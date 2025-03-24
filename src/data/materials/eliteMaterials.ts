@@ -843,8 +843,8 @@ export const eliteMaterials = [
         id: "eliteMat_24",
         category: "eliteMat",
         tag: "Jackal",
-        name: "Keenclaw Jackal Shell",
-        displayName: "Keenclaw Jackal Shell",
+        name: "Furnace Shell",
+        displayName: "Furnace Shell",
         release: { version: "5.5" },
     },
     {
