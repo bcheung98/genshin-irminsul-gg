@@ -331,6 +331,36 @@ export const weeklyBossMaterials = [
         rarity: 5,
         release: { version: "5.3" },
     },
+    {
+        id: "weeklyBossMat_11_0",
+        category: "weeklyBossMat",
+        tag: "weeklyBossMat_11_0",
+        name: "weeklyBossMat_11_0",
+        displayName: "weeklyBossMat_11_0",
+        source: "???",
+        rarity: 5,
+        release: { version: "5.6" },
+    },
+    {
+        id: "weeklyBossMat_11_1",
+        category: "weeklyBossMat",
+        tag: "weeklyBossMat_11_1",
+        name: "weeklyBossMat_11_1",
+        displayName: "weeklyBossMat_11_1",
+        source: "???",
+        rarity: 5,
+        release: { version: "5.6" },
+    },
+    {
+        id: "weeklyBossMat_11_2",
+        category: "weeklyBossMat",
+        tag: "weeklyBossMat_11_2",
+        name: "weeklyBossMat_11_2",
+        displayName: "weeklyBossMat_11_2",
+        source: "???",
+        rarity: 5,
+        release: { version: "5.6" },
+    },
 ] as const;
 
 export const weeklyBossMatNames = weeklyBossMaterials.map((mat) => mat.tag);

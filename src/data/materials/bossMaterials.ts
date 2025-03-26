@@ -369,6 +369,16 @@ export const bossMaterials = [
         rarity: 4,
         release: { version: "5.5" },
     },
+    {
+        id: "bossMat_37",
+        category: "bossMat",
+        tag: "Secret Source Airflow Accumulator",
+        name: "Secret Source Airflow Accumulator",
+        displayName: "Secret Source Airflow Accumulator",
+        source: "Secret Source Automaton: Overseer Device",
+        rarity: 4,
+        release: { version: "5.6" },
+    },
 ] as const;
 
 export const bossMatNames = bossMaterials.map((mat) => mat.tag);
