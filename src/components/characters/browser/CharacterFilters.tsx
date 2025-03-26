@@ -245,6 +245,7 @@ function CharacterFilters({
                                                 : undefined
                                         }
                                         title={group.title}
+                                        titleColor={theme.appbar.color}
                                     >
                                         <ToggleButtons
                                             color="secondary"
