@@ -11,7 +11,7 @@ import weaponFilterReducer from "reducers/weaponFilters";
 import artifactReducer from "reducers/artifact";
 import plannerReducer from "reducers/planner";
 import bannerReducer from "reducers/banner";
-import tcgReducer from "./reducers/tcgReducer";
+import tcgReducer from "./reducers/tcg";
 import tcgCharacterFilterReducer from "./reducers/tcgCharacterFilterReducer";
 import tcgActionFilterReducer from "./reducers/tcgActionFilterReducer";
 import deckReducer from "./reducers/tcgDeckReducer";

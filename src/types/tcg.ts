@@ -3,7 +3,7 @@ import {
     tcgFactions,
     tcgActionCardTypes,
     tcgActionCardSubTypes,
-} from "data/tcg";
+} from "data/tcg/tcg";
 import { Arkhe, Element, WeaponType } from "./_common";
 import { Skill } from "./skill";
 import { Version } from "./version";
@@ -13,21 +13,14 @@ export type TCGFaction = (typeof tcgFactions)[number];
 export type TCGActionCardType = (typeof tcgActionCardTypes)[number];
 export type TCGActionCardSubType = (typeof tcgActionCardSubTypes)[number];
 
-export interface TCGData {
-    characterCards: TCGCharacterCard[];
-    actionCards: TCGActionCard[];
-    keywords: TCGKeyword[];
-}
+export type TCGCardType = "character" | "action";
 
-export interface TCGCharacterCardProps {
-    card: TCGCharacterCard;
-}
-
-export interface TCGActionCardProps {
-    card: TCGActionCard;
+export interface TCGCardProps {
+    card: TCGCharacterCard | TCGActionCard;
 }
 
 export interface TCGCard {
+    id: number;
     name: string;
     displayName: string;
     splash: {
@@ -35,6 +28,7 @@ export interface TCGCard {
         description: string;
     };
     release: Version;
+    sortOrder: number;
 }
 
 export interface TCGCharacterCard extends TCGCard {
@@ -64,15 +58,22 @@ export interface TCGSkill extends Skill {
 }
 
 export interface TCGTalents {
-    attack: TCGSkill[];
-    skill: TCGSkill[];
-    burst: TCGSkill[];
-    passive?: TCGSkill[];
+    attack: TCGSkill;
+    attack2?: TCGSkill;
+    skill: TCGSkill;
+    skill2: TCGSkill;
+    burst: TCGSkill;
+    burst2: TCGSkill;
+    passive?: TCGSkill;
 }
 
 export interface TCGKeyword extends TCGSkill {
     tag: string;
     type?: string;
+    subType?: TCGActionCardSubType;
+    combatAction?: boolean;
+    icon?: string;
+    img?: string;
 }
 
 export interface TCGDeck {

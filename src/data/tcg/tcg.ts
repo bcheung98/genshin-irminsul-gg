@@ -23,15 +23,15 @@ export const tcgFactions = [
 export const tcgActionCardTypes = ["Equipment", "Support", "Event"] as const;
 
 export const tcgActionCardSubTypes = [
-    "",
-    "Arcane Legend",
-    "Artifact",
-    "Companion",
-    "Elemental Resonance",
-    "Food",
-    "Item",
-    "Location",
     "Talent",
-    "Technique",
     "Weapon",
+    "Artifact",
+    "Technique",
+    "Location",
+    "Companion",
+    "Item",
+    "Arcane Legend",
+    "Elemental Resonance",
+    "Other",
+    "Food",
 ] as const;

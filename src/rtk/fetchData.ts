@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Character } from "types/character";
 import { Weapon } from "types/weapon";
-import { TCGData } from "types/tcg";
+import { TCGActionCard, TCGCharacterCard, TCGKeyword } from "types/tcg";
 import { Artifact } from "types/artifact";
 import { Banner, ChronicledWishBanner } from "types/banner";
 
@@ -13,11 +13,19 @@ const charactersURL = "https://api.irminsul.gg/genshin/characters.json";
 // https://api.irminsul.gg/genshin/weapons.json
 const weaponsURL = "https://api.irminsul.gg/genshin/weapons.json";
 
-// https://api.irminsul.gg/genshin/cards.json
-const cardsURL = "https://api.irminsul.gg/genshin/cards.json";
-
 // https://api.irminsul.gg/genshin/artifacts.json
 const artifactsURL = "https://api.irminsul.gg/genshin/artifacts.json";
+
+// https://api.irminsul.gg/genshin/tcg-character-cards.json
+const tcgCharacterCardsURL =
+    "https://api.irminsul.gg/genshin/tcg-character-cards.json";
+
+// https://api.irminsul.gg/genshin/tcg-action-cards.json
+const tcgActionCardsURL =
+    "https://api.irminsul.gg/genshin/tcg-action-cards.json";
+
+// https://api.irminsul.gg/genshin/tcg-keywords-cards.json
+const tcgKeywordsURL = "https://api.irminsul.gg/genshin/tcg-keywords.json";
 
 const characterBannerURL =
     "https://api.irminsul.gg/genshin/character-banners.json";
@@ -43,8 +51,10 @@ export const fetchWeapons = createAsyncThunk(
 
 export const fetchCards = createAsyncThunk(
     "GET/cards",
-    async (): Promise<TCGData> => {
-        const response = await fetch(cardsURL);
+    async (
+        type: TCGDataType
+    ): Promise<TCGCharacterCard[] | TCGActionCard[] | TCGKeyword[]> => {
+        const response = await fetch(getCardsURL(type));
         return await response.json();
     }
 );
@@ -80,3 +90,15 @@ export const fetchChronicledWish = createAsyncThunk(
         return await response.json();
     }
 );
+
+type TCGDataType = "CharacterCards" | "ActionCards" | "Keywords";
+const getCardsURL = (type: TCGDataType) => {
+    switch (type) {
+        case "CharacterCards":
+            return tcgCharacterCardsURL;
+        case "ActionCards":
+            return tcgActionCardsURL;
+        case "Keywords":
+            return tcgKeywordsURL;
+    }
+};
