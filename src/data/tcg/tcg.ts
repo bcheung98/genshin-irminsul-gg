@@ -32,6 +32,6 @@ export const tcgActionCardSubTypes = [
     "Item",
     "Arcane Legend",
     "Elemental Resonance",
-    "Other",
     "Food",
+    "Other",
 ] as const;

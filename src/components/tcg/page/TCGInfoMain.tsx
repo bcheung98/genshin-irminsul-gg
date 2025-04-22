@@ -46,8 +46,8 @@ function TCGInfoMain({ card }: TCGCardProps) {
                                 <>
                                     <InfoChip
                                         color="info"
-                                        src={`tcg/icons/weapons/${card.weapon}`}
-                                        label={card.weapon}
+                                        src={`tcg/icons/weapons/${card.weaponType}`}
+                                        label={card.weaponType}
                                     />
                                     {card.factions.map((faction, index) => (
                                         <InfoChip

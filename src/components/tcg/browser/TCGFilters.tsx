@@ -12,15 +12,31 @@ import RestartAltIcon from "@mui/icons-material/RestartAlt";
 
 // Helper imports
 import { useAppDispatch, useAppSelector } from "helpers/hooks";
+import { elements } from "data/common";
+import {
+    tcgActionCardSubTypes,
+    tcgFactions,
+    tcgWeaponTypes,
+} from "data/tcg/tcg";
 import {
     setCardType,
     clearFilters,
     selectTCGFilters,
     activeTCGFilters,
+    setElement,
+    setWeapon,
+    setFaction,
+    setCardGroup,
 } from "reducers/tcgFilters";
 
 // Type imports
-import { TCGCardType } from "types/tcg";
+import {
+    TCGActionCardSubType,
+    TCGCardType,
+    TCGFaction,
+    TCGWeaponType,
+} from "types/tcg";
+import { Element } from "types/_common";
 
 function TCGFilters({ handleClose }: { handleClose: (arg0: any) => void }) {
     const theme = useTheme();
@@ -48,6 +64,36 @@ function TCGFilters({ handleClose }: { handleClose: (arg0: any) => void }) {
                     />
                 ),
             })),
+        },
+        {
+            name: "Element",
+            value: filters.element,
+            onChange: (_: BaseSyntheticEvent, newValues: Element[]) =>
+                dispatch(setElement(newValues)),
+            buttons: createButtons(elements, "elements"),
+        },
+        {
+            name: "Weapon",
+            value: filters.weapon,
+            onChange: (_: BaseSyntheticEvent, newValues: TCGWeaponType[]) =>
+                dispatch(setWeapon(newValues)),
+            buttons: createButtons(tcgWeaponTypes, "tcg/icons/weapons"),
+        },
+        {
+            name: "Faction",
+            value: filters.faction,
+            onChange: (_: BaseSyntheticEvent, newValues: TCGFaction[]) =>
+                dispatch(setFaction(newValues)),
+            buttons: createButtons(tcgFactions, "tcg/icons/factions"),
+        },
+        {
+            name: "Action Card Group",
+            value: filters.cardGroup,
+            onChange: (
+                _: BaseSyntheticEvent,
+                newValues: TCGActionCardSubType[]
+            ) => dispatch(setCardGroup(newValues)),
+            buttons: createButtons(tcgActionCardSubTypes, "tcg/icons/subtypes"),
         },
     ];
 
@@ -107,3 +153,17 @@ function TCGFilters({ handleClose }: { handleClose: (arg0: any) => void }) {
 }
 
 export default TCGFilters;
+
+function createButtons<T extends string>(items: readonly T[], url: string) {
+    return items.map((item) => ({
+        value: item,
+        icon: (
+            <Image
+                src={`${url}/${item}`}
+                alt={`${item}`}
+                style={{ width: "32px", padding: "4px", borderRadius: "4px" }}
+                tooltip={item}
+            />
+        ),
+    }));
+}

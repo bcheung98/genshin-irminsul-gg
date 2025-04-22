@@ -53,7 +53,7 @@ function TCGCardSkill({ card }: TCGCardProps) {
                         icon: `${getSkillIcon(
                             talentKey,
                             character.name,
-                            character.weapon,
+                            character.weaponType,
                             character.talents
                         )}`,
                         description: skill.description,
@@ -112,7 +112,7 @@ function TCGCardSkill({ card }: TCGCardProps) {
                                             src={`tcg/${getSkillIcon(
                                                 key,
                                                 card.name,
-                                                card.weapon,
+                                                card.weaponType,
                                                 card.talents
                                             )}`}
                                             alt={key}

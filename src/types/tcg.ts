@@ -34,7 +34,7 @@ export interface TCGCard {
 export interface TCGCharacterCard extends TCGCard {
     fullName: string;
     element: Element;
-    weapon: TCGWeaponType;
+    weaponType: TCGWeaponType;
     factions: TCGFaction[];
     arkhe?: Arkhe;
     hp: number;

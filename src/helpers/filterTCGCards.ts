@@ -15,6 +15,32 @@ export function filterTCGCards(
             cards = cards.filter((card) => "subType" in card);
         }
     }
+    if (filters.element.length > 0) {
+        cards = cards.filter(
+            (card) =>
+                "talents" in card && filters.element.includes(card.element)
+        );
+    }
+    if (filters.weapon.length > 0) {
+        cards = cards.filter((card) =>
+            filters.weapon.includes(card.weaponType!)
+        );
+    }
+    if (filters.faction.length > 0) {
+        cards = cards.filter(
+            (card) =>
+                "talents" in card &&
+                filters.faction.some((faction) =>
+                    card.factions.includes(faction)
+                )
+        );
+    }
+    if (filters.cardGroup.length > 0) {
+        cards = cards.filter(
+            (card) =>
+                "subType" in card && filters.cardGroup.includes(card.subType)
+        );
+    }
     if (searchValue !== "") {
         cards = cards.filter(
             (card) =>
