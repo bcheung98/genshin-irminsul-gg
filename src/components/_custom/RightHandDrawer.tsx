@@ -3,6 +3,7 @@ import { useLocation } from "react-router";
 // Component imports
 import CharacterFilters from "components/characters/browser/CharacterFilters";
 import WeaponFilters from "components/weapons/browser/WeaponFilters";
+import TCGFilters from "components/tcg/browser/TCGFilters";
 
 // MUI imports
 import {
@@ -34,7 +35,8 @@ function RightHandDrawer() {
 
     const location = useLocation().pathname;
     const isOpen =
-        ["/characters/", "/weapons/"].includes(location) && matches_md_up;
+        ["/characters/", "/weapons/", "/tcg/"].includes(location) &&
+        matches_md_up;
 
     let component: React.ReactNode;
     switch (location) {
@@ -43,6 +45,9 @@ function RightHandDrawer() {
             break;
         case "/weapons/":
             component = <WeaponFilters handleClose={handleDrawerClose} />;
+            break;
+        case "/tcg/":
+            component = <TCGFilters handleClose={handleDrawerClose} />;
             break;
         default:
             component = null;

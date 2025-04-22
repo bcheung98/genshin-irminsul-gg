@@ -11,9 +11,8 @@ import weaponFilterReducer from "reducers/weaponFilters";
 import artifactReducer from "reducers/artifact";
 import plannerReducer from "reducers/planner";
 import bannerReducer from "reducers/banner";
-import tcgReducer from "./reducers/tcgReducer";
-import tcgCharacterFilterReducer from "./reducers/tcgCharacterFilterReducer";
-import tcgActionFilterReducer from "./reducers/tcgActionFilterReducer";
+import tcgReducer from "./reducers/tcg";
+import tcgFilterReducer from "./reducers/tcgFilters";
 import deckReducer from "./reducers/tcgDeckReducer";
 
 const store = configureStore({
@@ -29,8 +28,7 @@ const store = configureStore({
         planner: plannerReducer,
         banners: bannerReducer,
         cards: tcgReducer,
-        cardCharFilters: tcgCharacterFilterReducer,
-        cardActionFilters: tcgActionFilterReducer,
+        tcgFilters: tcgFilterReducer,
         deck: deckReducer,
     },
     middleware: (getDefaultMiddleware) =>

@@ -16,6 +16,7 @@ import {
     fetchCharacterBanners,
     fetchWeaponBanners,
     fetchChronicledWish,
+    fetchCards,
 } from "rtk/fetchData";
 import { useAppDispatch, useAppSelector } from "helpers/hooks";
 import { selectTheme, setTheme } from "reducers/settings";
@@ -31,6 +32,9 @@ function App() {
         dispatch(fetchCharacterBanners());
         dispatch(fetchWeaponBanners());
         dispatch(fetchChronicledWish());
+        dispatch(fetchCards("CharacterCards"));
+        dispatch(fetchCards("ActionCards"));
+        dispatch(fetchCards("Keywords"));
     }, []);
 
     const theme = useAppSelector(selectTheme);

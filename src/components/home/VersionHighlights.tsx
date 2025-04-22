@@ -3,6 +3,7 @@ import { CSSProperties, useState } from "react";
 // Component imports
 import Image from "custom/Image";
 import InfoCard from "custom/InfoCard";
+import TCGInfoCard from "components/tcg/browser/TCGInfoCard";
 import MainContentBox from "custom/MainContentBox";
 import { FlexBox } from "styled/StyledBox";
 import { TextStyled } from "styled/StyledTypography";
@@ -28,6 +29,7 @@ import { useAppSelector } from "helpers/hooks";
 import { selectCharacters } from "reducers/character";
 import { selectWeapons } from "reducers/weapon";
 import { selectArtifacts } from "reducers/artifact";
+import { selectActionCards, selectCharacterCards } from "reducers/tcg";
 
 function VersionHighlights() {
     const theme = useTheme();
@@ -96,6 +98,12 @@ function VersionHighlights() {
                 b.rarity - a.rarity ||
                 a.displayName.localeCompare(b.displayName)
         );
+    const cards = [
+        ...useAppSelector(selectCharacterCards),
+        ...useAppSelector(selectActionCards),
+    ]
+        .filter((card) => card.release.version === version)
+        .sort((a, b) => a.sortOrder - b.sortOrder);
 
     return (
         <MainContentBox
@@ -227,6 +235,35 @@ function VersionHighlights() {
                                     displayName={artifact.name}
                                     type="artifact"
                                     rarity={artifact.rarity}
+                                />
+                            ))}
+                        </Grid>
+                    </Grid>
+                )}
+                {cards.length > 0 && (
+                    <Grid sx={gridContainerStyle} size="auto">
+                        <FlexBox sx={{ mb: "8px" }}>
+                            <Image
+                                src="icons/TCG"
+                                alt="New TCG Cards"
+                                style={iconStyle}
+                            />
+                            <TextStyled variant="h6-styled">
+                                New TCG Cards
+                            </TextStyled>
+                        </FlexBox>
+                        <Grid container spacing={3} sx={gridStyle}>
+                            {cards.map((card, index) => (
+                                <TCGInfoCard
+                                    key={index}
+                                    id={`tcg-${card.name}-versionHighlights`}
+                                    name={card.name}
+                                    displayName={card.displayName}
+                                    type={
+                                        "talents" in card
+                                            ? "character"
+                                            : "action"
+                                    }
                                 />
                             ))}
                         </Grid>

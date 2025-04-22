@@ -27,6 +27,11 @@ export const navItems: NavItem[] = [
         link: "/artifacts/",
     },
     {
+        icon: "icons/TCG",
+        text: "TCG",
+        link: "/tcg/",
+    },
+    {
         icon: "icons/Ascension",
         text: "Ascension Planner",
         link: "/planner/",
