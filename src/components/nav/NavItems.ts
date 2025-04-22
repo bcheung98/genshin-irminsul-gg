@@ -7,7 +7,7 @@ export interface NavItem {
 
 export const navItems: NavItem[] = [
     {
-        icon: "icons/Sumeru",
+        icon: "icons/Home",
         text: "Home",
         link: "/",
     },
