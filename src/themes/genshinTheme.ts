@@ -31,7 +31,7 @@ export const genshinThemeData = {
     name: "Genshin",
     background: (index: number, shade?: Shade) =>
         getThemeBackgroundColors({ colors: backgroundColors, index, shade }),
-    backgroundImageColors: ["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.2)"],
+    backgroundImageColors: ["rgb(99, 58, 56)", "rgba(212, 165, 201, 0.2)"],
     backgroundImageURL:
         "https://assets.irminsul.gg/genshin/images/Irminsul.png",
     backgroundImageAlpha: 0.75,
