@@ -2,28 +2,28 @@ import { createTheme } from "@mui/material";
 import { getThemeBackgroundColors } from "helpers/utils";
 import { Shade } from "types/theme";
 
-const appbarColors = ["rgb(0, 16, 32)", "rgb(0, 23, 47)", "rgb(0, 40, 80)"];
+const appbarColors = ["rgb(26, 29, 32)", "rgb(38, 50, 64)", "rgb(63, 81, 104)"];
 
 const border = {
-    color: "rgb(30, 73, 118)",
-    highlight: `rgb(30, 144, 255)`,
+    color: "rgb(211, 188, 142)",
+    highlight: `rgb(217, 204, 179)`,
 };
 
 const backgroundColors = [
     {
-        main: "rgb(0, 40, 80)",
-        light: "rgb(0, 50, 100)",
-        dark: "rgb(0, 30, 60)",
+        main: "rgb(63, 81, 104)",
+        light: "rgb(73, 91, 114)",
+        dark: "rgb(53, 71, 94)",
     },
     {
-        main: "rgb(0, 23, 47)",
-        light: "rgb(0, 33, 66)",
-        dark: "rgb(0, 13, 26)",
+        main: "rgb(38, 50, 64)",
+        light: "rgb(48, 60, 74)",
+        dark: "rgb(28, 40, 54)",
     },
     {
-        main: "rgb(0, 16, 32)",
-        light: "rgb(0, 21, 42)",
-        dark: "rgb(0, 11, 22)",
+        main: "rgb(26, 29, 32)",
+        light: "rgb(36, 39, 42)",
+        dark: "rgb(16, 19, 22)",
     },
 ];
 
@@ -31,23 +31,29 @@ export const genshinThemeData = {
     name: "Genshin",
     background: (index: number, shade?: Shade) =>
         getThemeBackgroundColors({ colors: backgroundColors, index, shade }),
-    backgroundImageColors: ["rgb(23, 46, 98)", "rgba(73, 218, 243, 0.2)"],
-    backgroundImageURL: "https://assets.irminsul.gg/main/images/Irminsul.png",
+    backgroundImageColors: ["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.2)"],
+    backgroundImageURL:
+        "https://assets.irminsul.gg/genshin/images/Irminsul.png",
     backgroundImageAlpha: 0.75,
     palette: {
         primary: {
-            main: "rgb(0, 16, 32)",
+            main: "rgb(26, 29, 32)",
         },
         secondary: {
-            main: "rgb(0, 23, 47)",
+            main: "rgb(38, 50, 64)",
         },
         tertiary: {
-            main: "rgb(0, 40, 80)",
-            light: "rgb(10, 40, 70)",
-            dark: "rgb(0, 20, 40)",
+            main: "rgb(59, 92, 136)",
+            light: "rgb(69, 102, 146)",
+            dark: "rgb(49, 82, 126)",
         },
         info: {
-            main: "rgb(0, 101, 202)",
+            main: "rgb(98, 98, 98)",
+            light: "rgb(193, 166, 146)",
+            dark: "rgb(236, 229, 216)",
+        },
+        error: {
+            main: "rgb(184, 90, 73)",
         },
         divider: border.color,
     },
@@ -127,9 +133,9 @@ export const genshinThemeData = {
     },
     text: {
         primary: "rgb(255, 255, 255)",
-        contrast: "rgb(0, 0, 0)",
-        selected: "rgb(30, 175, 255)",
-        description: "rgb(205, 205, 205)",
+        contrast: "rgb(59, 66, 85)",
+        selected: "rgb(211, 188, 142)",
+        description: "rgb(236, 229, 216)",
         highlight: "#FFE7B9",
         highlight2: "#FFFFFF",
         star: "rgb(255, 238, 157)",
