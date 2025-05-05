@@ -334,9 +334,9 @@ export const weeklyBossMaterials = [
     {
         id: "weeklyBossMat_11_0",
         category: "weeklyBossMat",
-        tag: "weeklyBossMat_11_0",
-        name: "weeklyBossMat_11_0",
-        displayName: "weeklyBossMat_11_0",
+        tag: "Ascended Sample Knight",
+        name: "Ascended Sample Knight",
+        displayName: "Ascended Sample: Knight",
         source: "The Game Before The Gate",
         rarity: 5,
         release: { version: "5.6" },
@@ -344,9 +344,9 @@ export const weeklyBossMaterials = [
     {
         id: "weeklyBossMat_11_1",
         category: "weeklyBossMat",
-        tag: "weeklyBossMat_11_1",
-        name: "weeklyBossMat_11_1",
-        displayName: "weeklyBossMat_11_1",
+        tag: "Ascended Sample Rook",
+        name: "Ascended Sample Rook",
+        displayName: "Ascended Sample: Rook",
         source: "The Game Before The Gate",
         rarity: 5,
         release: { version: "5.6" },
@@ -354,9 +354,9 @@ export const weeklyBossMaterials = [
     {
         id: "weeklyBossMat_11_2",
         category: "weeklyBossMat",
-        tag: "weeklyBossMat_11_2",
-        name: "weeklyBossMat_11_2",
-        displayName: "weeklyBossMat_11_2",
+        tag: "Ascended Sample Queen",
+        name: "Ascended Sample Queen",
+        displayName: "Ascended Sample: Queen",
         source: "The Game Before The Gate",
         rarity: 5,
         release: { version: "5.6" },
@@ -376,9 +376,7 @@ export function groupedWeeklyBossMatNames(showUnreleased = false) {
     }
     const groupedMaterials: Record<string, string[]> = {};
     materials.forEach((mat) => (groupedMaterials[mat.source] = []));
-    materials.forEach((mat) =>
-        groupedMaterials[mat.source].push(mat.displayName)
-    );
+    materials.forEach((mat) => groupedMaterials[mat.source].push(mat.name));
     return groupedMaterials;
 }
 

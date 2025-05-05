@@ -52,7 +52,10 @@ import {
     getCommonMaterial,
 } from "data/materials/commonMaterials";
 import { bossMaterials, getBossMaterial } from "data/materials/bossMaterials";
-import { groupedWeeklyBossMatNames } from "data/materials/weeklyBossMaterials";
+import {
+    getWeeklyBossMaterial,
+    groupedWeeklyBossMatNames,
+} from "data/materials/weeklyBossMaterials";
 import { groupedLocalMatNames } from "data/materials/localMaterials";
 
 // Type imports
@@ -324,6 +327,8 @@ function getTooltip<T extends string>(item: T, url: string) {
         tooltip = formatMaterialName(getTalentMaterial({ tag: item }));
     } else if (url.startsWith("materials/boss")) {
         tooltip = formatMaterialName(getBossMaterial({ tag: item }));
+    } else if (url.startsWith("materials/weekly")) {
+        tooltip = getWeeklyBossMaterial({ tag: item })?.displayName;
     } else if (url.startsWith("icons/ascension_stat")) {
         tooltip = `${
             characterAscensionStats[item as CharacterAscensionStat].title
