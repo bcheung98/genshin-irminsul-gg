@@ -96,6 +96,25 @@ export const tcgCommonKeywords: TCGKeyword[] = [
             ${Reactions.Swirl({ element: "Electro" })}<br />`,
     },
     {
+        tag: "electro application",
+        name: `<span class="text-electro">Electro Application</span>`,
+        icon: "icons/elements/Electro",
+        description: `When Icon_Electro Electro is applied without dealing any DMG, the Elemental Reactions triggered will ignore DMG-dealing effects:<br />
+            ${Reactions.Overloaded({
+                element: "Electro",
+                application: true,
+            })}<br />
+            ${Reactions.Superconduct({
+                element: "Electro",
+                application: true,
+            })}<br />
+            ${Reactions.ElectroCharged({
+                element: "Electro",
+                application: true,
+            })}<br />
+            ${Reactions.Quicken({ element: "Electro", application: true })}`,
+    },
+    {
         tag: "cryo",
         name: `<span class="text-cryo">Cryo DMG</span>`,
         icon: "icons/elements/Cryo",
@@ -270,6 +289,11 @@ export const tcgCommonKeywords: TCGKeyword[] = [
         tag: "select",
         name: "Select",
         description: `Select 1 card from a specific number of cards and activate its effects.`,
+    },
+    {
+        tag: "satiated",
+        name: "Satiated",
+        description: `You cannot consume more Icon_Food Food this Round`,
     },
 
     // Misc
