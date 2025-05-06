@@ -22,6 +22,11 @@ import { getBossMaterial } from "data/materials/bossMaterials";
 // Type imports
 import { Element, Rarity, WeaponType } from "types/_common";
 import { CharacterMaterials } from "types/materials";
+import {
+    CharacterAscensionStat,
+    characterAscensionStats,
+} from "data/characterAscensionStats";
+import { WeaponSubStat } from "data/weaponStats";
 
 interface InfoCardProps {
     name: string;
@@ -35,6 +40,7 @@ interface InfoCardProps {
     info?: {
         element?: Element;
         weapon?: WeaponType;
+        subStat?: CharacterAscensionStat | WeaponSubStat;
     };
     materials?: CharacterMaterials;
     backgroundColor?: string;
@@ -256,6 +262,17 @@ function InfoCard({
                                     alt={info.weapon}
                                     style={infoIconStyle}
                                     tooltip={info.weapon}
+                                />
+                            )}
+                            {info.subStat && (
+                                <Image
+                                    src={`icons/ascension_stats/${info.subStat}`}
+                                    alt={info.subStat}
+                                    style={infoIconStyle}
+                                    tooltip={
+                                        characterAscensionStats[info.subStat]
+                                            .title
+                                    }
                                 />
                             )}
                         </Stack>
