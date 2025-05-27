@@ -20,7 +20,7 @@ function CharacterSkillScaling({
 
     const color = theme.elementColor(element);
 
-    const maxLevel = 13;
+    const maxLevel = 15;
     const data = scaling.map((subScaling) => subScaling.slice(0, maxLevel + 1));
 
     const levels = data.length > 0 ? data[0].length - 1 : maxLevel;
