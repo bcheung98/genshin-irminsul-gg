@@ -1,7 +1,7 @@
 import { CharacterAscensionStat } from "data/characterAscensionStats";
 import { Rarity, Element, WeaponType, Nation, Arkhe } from "./_common";
 import { CharacterMaterials } from "./materials";
-import { SkillWithScaling, Skill } from "./skill";
+import { SkillWithScaling, Skill, SkillKeyword } from "./skill";
 import { VersionWithDate } from "./version";
 
 export interface CharacterProps {
@@ -21,6 +21,7 @@ export interface Character {
     skills: CharacterSkills;
     passives: CharacterPassive[];
     constellation: CharacterConstellations;
+    keywords?: SkillKeyword[];
     stats: CharacterStats;
     materials: CharacterMaterials;
     description: string;

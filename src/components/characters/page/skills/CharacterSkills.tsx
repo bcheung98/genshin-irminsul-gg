@@ -23,7 +23,7 @@ function CharacterSkills({ character }: CharacterProps) {
     const theme = useTheme();
     const matches_sm_up = useMediaQuery(theme.breakpoints.up("sm"));
 
-    const { name, element, weapon, skills, materials } = character;
+    const { name, element, weapon, skills } = character;
 
     const [tabValue, setTabValue] = useState(0);
     const handleTabChange = (_: BaseSyntheticEvent, newValue: number) => {
@@ -121,10 +121,8 @@ function CharacterSkills({ character }: CharacterProps) {
                 <TabPanel key={key} index={index} value={tabValue}>
                     <CharacterSkillTab
                         mode={mode}
-                        skills={skills}
+                        character={character}
                         skillKey={key}
-                        element={element}
-                        materials={materials}
                     />
                 </TabPanel>
             ))}

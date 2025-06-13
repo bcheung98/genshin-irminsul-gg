@@ -12,12 +12,14 @@ export function parseSkillDescription({
     targetClassName = "text-value",
     newClassName,
     onClick,
+    disableLink = false,
 }: {
     description: string;
     textVariant?: TypographyProps["variant"];
     targetClassName?: string;
     newClassName?: string;
     onClick?: (event: BaseSyntheticEvent) => void;
+    disableLink?: boolean;
 }) {
     const theme = useTheme();
     const options: HTMLReactParserOptions = {
@@ -46,15 +48,20 @@ export function parseSkillDescription({
                             {domToReact(domNode.children as DOMNode[], options)}
                         </span>
                     );
-                }
-                if (className.split("-")[0].startsWith("tooltip")) {
+                } else if (className.split("-")[0].startsWith("tooltip")) {
                     return (
                         <span
                             className={className}
                             style={{
-                                color: theme.text.primary,
-                                textDecoration: "underline",
-                                cursor: "pointer",
+                                color: theme.text[
+                                    getTextColor(
+                                        className
+                                    ) as keyof typeof theme.text
+                                ],
+                                textDecoration: !disableLink
+                                    ? "underline"
+                                    : "none",
+                                cursor: !disableLink ? "pointer" : "text",
                             }}
                             onClick={onClick}
                         >
@@ -67,4 +74,12 @@ export function parseSkillDescription({
     };
 
     return parse(description, options);
+}
+
+function getTextColor(className: string) {
+    if (className.startsWith("tooltipHighlight-")) {
+        return "highlight";
+    } else {
+        return "primary";
+    }
 }
