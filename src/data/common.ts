@@ -25,6 +25,7 @@ export const nations = [
     "Sumeru",
     "Fontaine",
     "Natlan",
+    "Nod-Krai",
     "Snezhnaya",
 ] as const;
 
