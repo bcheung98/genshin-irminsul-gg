@@ -122,6 +122,8 @@ function formatPassiveKey(type: CharacterPassiveType) {
             return "Night Realm's Gift Passive";
         case "util":
             return "Utility Passive";
+        case "moon":
+            return "Moonsign Benediction";
         case "":
         default:
             return "Passive Talent";

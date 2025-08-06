@@ -44,7 +44,13 @@ export interface CharacterSkills {
     altsprint?: SkillWithScaling;
 }
 
-export type CharacterPassiveType = "a1" | "a4" | "util" | "nightsoul" | "";
+export type CharacterPassiveType =
+    | "a1"
+    | "a4"
+    | "util"
+    | "nightsoul"
+    | "moon"
+    | "";
 export interface CharacterPassive extends Skill {
     type: CharacterPassiveType;
 }

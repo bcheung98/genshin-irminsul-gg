@@ -1,5 +1,6 @@
 // MAKE SURE TO CHANGE THIS EVERY UPDATE!
 export const updates = [
+    { version: "5.8", name: "Sunspray Summer Resort" },
     { version: "5.7", name: "A Space and Time for You" },
     { version: "5.6", name: "Paralogism" },
     { version: "5.5", name: "Day of the Flame's Return" },
