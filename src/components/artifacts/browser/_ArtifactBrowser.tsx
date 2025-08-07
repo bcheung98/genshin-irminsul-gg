@@ -31,7 +31,9 @@ function ArtifactBrowser() {
 
     const artifacts = [...useAppSelector(selectArtifacts)].sort(
         (a, b) =>
-            b.rarity - a.rarity || a.displayName.localeCompare(b.displayName)
+            b.release.version.localeCompare(a.release.version) ||
+            b.rarity - a.rarity ||
+            b.displayName.localeCompare(a.displayName)
     );
 
     const [searchValue, setSearchValue] = useState("");
