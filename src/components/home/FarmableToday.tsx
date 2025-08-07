@@ -30,9 +30,12 @@ import { materialDates, weekdays } from "helpers/materialDates";
 import { useAppSelector } from "helpers/hooks";
 import { selectCharacters } from "reducers/character";
 import { selectWeapons } from "reducers/weapon";
+import { selectUnreleasedContent } from "reducers/settings";
 
 function FarmableToday() {
     const theme = useTheme();
+
+    const showUnreleased = useAppSelector(selectUnreleasedContent);
 
     const [tabValue, setTabValue] = useState(0);
     const handleTabChange = (_: BaseSyntheticEvent, newValue: number) => {
@@ -93,7 +96,7 @@ function FarmableToday() {
         };
     };
 
-    const farmableMats = materialDates(weekdays[index]);
+    const farmableMats = materialDates(weekdays[index], showUnreleased);
     const characters = useAppSelector(selectCharacters)
         .filter((char) =>
             farmableMats.characters.includes(char.materials.talentBook)

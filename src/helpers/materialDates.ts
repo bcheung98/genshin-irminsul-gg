@@ -17,35 +17,57 @@ export type Weekday = (typeof weekdays)[number];
 
 export const dropDates = ["Mon/Thu", "Tue/Fri", "Wed/Sat"];
 
-export function materialDates(day: Weekday) {
+export function materialDates(day: Weekday, showUnreleased = false) {
     switch (day) {
         case "Monday":
         case "Thursday":
             return {
-                characters: getMaterials(talentMaterials, 0),
-                weapons: getMaterials(weaponAscensionMaterials, 0),
+                characters: getMaterials(talentMaterials, 0, showUnreleased),
+                weapons: getMaterials(
+                    weaponAscensionMaterials,
+                    0,
+                    showUnreleased
+                ),
             };
         case "Tuesday":
         case "Friday":
             return {
-                characters: getMaterials(talentMaterials, 1),
-                weapons: getMaterials(weaponAscensionMaterials, 1),
+                characters: getMaterials(talentMaterials, 1, showUnreleased),
+                weapons: getMaterials(
+                    weaponAscensionMaterials,
+                    1,
+                    showUnreleased
+                ),
             };
         case "Wednesday":
         case "Saturday":
             return {
-                characters: getMaterials(talentMaterials, 2),
-                weapons: getMaterials(weaponAscensionMaterials, 2),
+                characters: getMaterials(talentMaterials, 2, showUnreleased),
+                weapons: getMaterials(
+                    weaponAscensionMaterials,
+                    2,
+                    showUnreleased
+                ),
             };
         default:
             return {
-                characters: getMaterialKeyNames([...talentMaterials]),
-                weapons: getMaterialKeyNames([...weaponAscensionMaterials]),
+                characters: getMaterialKeyNames(
+                    [...talentMaterials],
+                    showUnreleased
+                ),
+                weapons: getMaterialKeyNames(
+                    [...weaponAscensionMaterials],
+                    showUnreleased
+                ),
             };
     }
 }
 
-export function getMaterials(arr: readonly Material[], index: number) {
+export function getMaterials(
+    arr: readonly Material[],
+    index: number,
+    showUnreleased: boolean
+) {
     const materials = arr.filter((mat) => mat.source === dropDates[index]);
-    return getMaterialKeyNames(materials);
+    return getMaterialKeyNames(materials, showUnreleased);
 }
