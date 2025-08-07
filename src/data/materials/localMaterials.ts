@@ -511,6 +511,36 @@ export const localMaterials = [
         rarity: 1,
         release: { version: "5.5" },
     },
+    {
+        id: "localMat_6_0",
+        category: "localMat",
+        tag: "Frostlamp Flower",
+        name: "Frostlamp Flower",
+        displayName: "Frostlamp Flower",
+        source: "Nod-Krai",
+        rarity: 1,
+        release: { version: "6.0" },
+    },
+    {
+        id: "localMat_6_1",
+        category: "localMat",
+        tag: "Moonfall Silver",
+        name: "Moonfall Silver",
+        displayName: "Moonfall Silver",
+        source: "Nod-Krai",
+        rarity: 1,
+        release: { version: "6.0" },
+    },
+    {
+        id: "localMat_6_2",
+        category: "localMat",
+        tag: "Portable Bearing",
+        name: "Portable Bearing",
+        displayName: "Portable Bearing",
+        source: "Nod-Krai",
+        rarity: 1,
+        release: { version: "6.0" },
+    },
 ] as const;
 
 export const localMatNames = localMaterials.map((mat) => mat.tag);

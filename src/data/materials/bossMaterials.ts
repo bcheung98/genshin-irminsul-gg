@@ -379,6 +379,26 @@ export const bossMaterials = [
         rarity: 4,
         release: { version: "5.6" },
     },
+    {
+        id: "bossMat_38",
+        category: "bossMat",
+        tag: "Lightbearing Wings",
+        name: "Lightbearing Wings",
+        displayName: "Lightbearing Wings",
+        source: "Radiant Moonfly",
+        rarity: 4,
+        release: { version: "6.0" },
+    },
+    {
+        id: "bossMat_39",
+        category: "bossMat",
+        tag: "Precision Kuuvahki Stamping D-uck-ie",
+        name: "Precision Kuuvahki Stamping D-uck-ie",
+        displayName: "Precision Kuuvahki Stamping D-uck-ie",
+        source: "Knuckle Duckle",
+        rarity: 4,
+        release: { version: "6.0" },
+    },
 ] as const;
 
 export const bossMatNames = bossMaterials.map((mat) => mat.tag);
