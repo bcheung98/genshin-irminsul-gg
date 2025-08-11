@@ -134,6 +134,16 @@ export const tcgCommonKeywords: TCGKeyword[] = [
             ${Reactions.Swirl({ element: "Cryo" })}`,
     },
     {
+        tag: "anemo reaction",
+        name: `<span class="text-anemo">Anemo-Related Reactions</span>`,
+        icon: "icons/elements/Anemo",
+        description: `
+            ${Reactions.Swirl({ element: "Pyro" })}<br />
+            ${Reactions.Swirl({ element: "Hydro" })}<br />
+            ${Reactions.Swirl({ element: "Electro" })}<br />
+            ${Reactions.Swirl({ element: "Cryo" })}`,
+    },
+    {
         tag: "geo",
         name: `<span class="text-geo">Geo DMG</span>`,
         icon: "icons/elements/Geo",
