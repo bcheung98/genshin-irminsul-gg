@@ -1,22 +1,29 @@
 import { useState, BaseSyntheticEvent, useMemo } from "react";
 
 // Component imports
+import ArtifactListRow from "./ArtifactListRow";
 import InfoCard from "custom/InfoCard";
+import ToggleButtons, { CustomToggleButtonProps } from "custom/ToggleButtons";
 import SearchBar from "custom/SearchBar";
 import { TextStyled } from "styled/StyledTypography";
 
 // MUI imports
+import { Card } from "@mui/material";
 import Grid from "@mui/material/Grid2";
+import ViewCompactIcon from "@mui/icons-material/ViewCompact";
+import TableRowsIcon from "@mui/icons-material/TableRows";
 
 // Helper imports
-import { useAppSelector } from "helpers/hooks";
+import { useAppDispatch, useAppSelector } from "helpers/hooks";
 import { selectArtifacts } from "reducers/artifact";
+import { selectBrowserSettings, setBrowserView, View } from "reducers/browser";
+import { parseVersionNumber } from "helpers/utils";
 
 // Type imports
 import { Artifact } from "types/artifact";
 
 function ArtifactBrowser() {
-    const documentTitle = `Artifact ${import.meta.env.VITE_DOCUMENT_TITLE}`;
+    const documentTitle = `Artifacts ${import.meta.env.VITE_DOCUMENT_TITLE}`;
     const documentDesc = `A list of all Genshin Impact Artifact Sets`;
     document.title = documentTitle;
     document
@@ -29,12 +36,18 @@ function ArtifactBrowser() {
         .querySelector('meta[property="og:description"]')
         ?.setAttribute("content", documentDesc);
 
+    const dispatch = useAppDispatch();
+
     const artifacts = [...useAppSelector(selectArtifacts)].sort(
         (a, b) =>
-            b.release.version.localeCompare(a.release.version) ||
+            parseVersionNumber(b.release.version).localeCompare(
+                parseVersionNumber(a.release.version)
+            ) ||
             b.rarity - a.rarity ||
             b.displayName.localeCompare(a.displayName)
     );
+
+    const browserSettings = useAppSelector(selectBrowserSettings).artifacts;
 
     const [searchValue, setSearchValue] = useState("");
     const handleInputChange = (event: BaseSyntheticEvent) => {
@@ -45,6 +58,25 @@ function ArtifactBrowser() {
         () => filterArtifacts(artifacts, searchValue),
         [artifacts, searchValue]
     );
+
+    const currentView = browserSettings.view;
+    const [view, setView] = useState<View>(currentView);
+    const handleView = (_: BaseSyntheticEvent, view: View) => {
+        if (view !== null) {
+            setView(view);
+            dispatch(setBrowserView({ type: "artifacts", view }));
+        }
+    };
+    const buttons: CustomToggleButtonProps[] = [
+        {
+            value: "icon",
+            icon: <ViewCompactIcon />,
+        },
+        {
+            value: "table",
+            icon: <TableRowsIcon />,
+        },
+    ];
 
     return (
         <>
@@ -59,6 +91,16 @@ function ArtifactBrowser() {
                         Artifacts
                     </TextStyled>
                 </Grid>
+                <Grid size={{ xs: 6, sm: "auto" }}>
+                    <ToggleButtons
+                        color="primary"
+                        buttons={buttons}
+                        value={view}
+                        exclusive
+                        onChange={handleView}
+                        highlightOnHover={false}
+                    />
+                </Grid>
                 <Grid size={{ xs: 12, sm: "auto" }}>
                     <SearchBar
                         placeholder="Search"
@@ -68,18 +110,31 @@ function ArtifactBrowser() {
                     />
                 </Grid>
             </Grid>
-            <Grid container spacing={3}>
-                {currentArtifacts.map((artifact, index) => (
-                    <InfoCard
-                        key={index}
-                        id={`${artifact.name}-artifactBrowser`}
-                        name={artifact.name}
-                        displayName={artifact.displayName}
-                        type="artifact"
-                        rarity={artifact.rarity}
-                    />
-                ))}
-            </Grid>
+            {view === "icon" && (
+                <Grid container spacing={3}>
+                    {currentArtifacts.map((artifact, index) => (
+                        <InfoCard
+                            key={index}
+                            id={`${artifact.name}-artifactBrowser`}
+                            name={artifact.name}
+                            displayName={artifact.displayName}
+                            type="artifact"
+                            rarity={artifact.rarity}
+                        />
+                    ))}
+                </Grid>
+            )}
+            {view === "table" && (
+                <Card>
+                    {currentArtifacts.map((artifact, index) => (
+                        <ArtifactListRow
+                            key={index}
+                            artifact={artifact}
+                            index={index}
+                        />
+                    ))}
+                </Card>
+            )}
         </>
     );
 }
