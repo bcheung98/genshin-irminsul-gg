@@ -2,6 +2,7 @@ import { Weapon } from "types/weapon";
 import { WeaponFilterState } from "reducers/weaponFilters";
 import { BrowserSettings } from "reducers/browser";
 import { sortBy } from "./utils";
+import { WeaponMap } from "data/common";
 
 export function filterWeapons(
     weapons: Weapon[],
@@ -63,21 +64,28 @@ export function filterWeapons(
             weps = weps.sort(
                 (a, b) =>
                     sortBy(a.rarity, b.rarity, reverse) ||
-                    a.displayName.localeCompare(b.displayName)
+                    sortBy(b.displayName, a.displayName)
             );
             break;
         case "weapon":
             weps = weps.sort(
                 (a, b) =>
-                    sortBy(b.type, a.type, reverse) ||
-                    a.displayName.localeCompare(b.displayName)
+                    sortBy(WeaponMap[b.type], WeaponMap[a.type], reverse) ||
+                    sortBy(a.rarity, b.rarity) ||
+                    sortBy(b.displayName, a.displayName)
             );
             break;
         case "release":
             weps = weps.sort(
                 (a, b) =>
+                    sortBy(
+                        parseVersionNumber(a.release.version),
+                        parseVersionNumber(b.release.version),
+                        reverse
+                    ) ||
+                    sortBy(b.rarity, a.rarity, !reverse) ||
                     sortBy(a.id, b.id, reverse) ||
-                    b.displayName.localeCompare(a.displayName)
+                    sortBy(b.displayName, a.displayName, !reverse)
             );
             break;
         case "element":
@@ -86,3 +94,13 @@ export function filterWeapons(
 
     return weps;
 }
+
+const numerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
+
+const parseVersionNumber = (version: string) => {
+    if (version.startsWith("Luna")) {
+        return `5.${numerals.findIndex((i) => i === version.split(" ")[1])}`;
+    } else {
+        return version;
+    }
+};
