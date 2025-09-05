@@ -1,132 +1,120 @@
 import { BaseSyntheticEvent, useEffect, useState } from "react";
 
 // Component imports
-import SortTableHead, {
-    getComparator,
-    HeadColumn,
-    Order,
-} from "custom/SortTableHead";
+import ChronicledWishRow from "./ChronicledWishRow";
+import MainContentBox from "custom/MainContentBox";
+import ToggleButtons from "custom/ToggleButtons";
+import { TextStyled } from "styled/StyledTypography";
+import { FlexBox } from "styled/StyledBox";
 
 // MUI imports
-import { Card, TableContainer, Table, TableBody } from "@mui/material";
+import { useTheme, Stack, Divider } from "@mui/material";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
 // Helper imports
-import store from "rtk/store";
 import { useAppSelector } from "helpers/hooks";
 import { selectCharacters } from "reducers/character";
 import { selectWeapons } from "reducers/weapon";
 import { selectChronicledWish } from "reducers/banner";
-import { objectKeys } from "helpers/utils";
+import { createChronicledWishData } from "helpers/createBannerData";
 
 // Type imports
-import { ChronicledWishBanner } from "types/banner";
-import ChronicledWishRow from "./ChronicledWishRow";
+import { ChronicledWishBanner, ChronicledWishBannerData } from "types/banner";
 
 function ChronicledWish() {
-    const banners = useAppSelector(selectChronicledWish);
+    const theme = useTheme();
 
+    const banners = useAppSelector(selectChronicledWish);
     const characters = useAppSelector(selectCharacters);
     const weapons = useAppSelector(selectWeapons);
+    const loading = [...characters, ...weapons].length === 0;
 
-    const [rows, setRows] = useState<ChronicledBannerRow[]>([]);
+    const [rows, setRows] = useState<ChronicledWishBannerData[]>([]);
 
-    const [order, setOrder] = useState<Order>("desc");
-    const [orderBy, setOrderBy] = useState("subVersion");
-
-    const handleRequestSort = (_: BaseSyntheticEvent, property: string) => {
-        const isAsc = orderBy === property && order === "asc";
-        setOrder(isAsc ? "desc" : "asc");
-        setOrderBy(property);
+    const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
+    const handleDirectionChange = (
+        _: BaseSyntheticEvent,
+        newDirection: "asc" | "desc"
+    ) => {
+        if (newDirection !== null) {
+            setSortDirection(newDirection);
+        }
     };
-
-    const headColumns: HeadColumn[] = [{ id: "subVersion", label: "Version" }];
 
     useEffect(() => {}, [characters, weapons]);
 
     useEffect(() => {
-        setRows(createBannerRows(banners));
-    }, [banners]);
+        setRows(createChronicledBannerRows(banners));
+    }, [banners, sortDirection]);
+
+    function createChronicledBannerRows(banners: ChronicledWishBanner[]) {
+        let bannerData: ChronicledWishBannerData[] = [];
+        banners.forEach((banner) => {
+            bannerData.push({
+                ...banner,
+                characters: createChronicledWishData(
+                    banner.characters,
+                    "character",
+                    characters,
+                    weapons
+                ),
+                weapons: createChronicledWishData(
+                    banner.weapons,
+                    "weapon",
+                    characters,
+                    weapons
+                ),
+            });
+        });
+        if (sortDirection === "asc") {
+            bannerData = bannerData.reverse();
+        }
+        return bannerData;
+    }
 
     return (
-        <TableContainer component={Card} sx={{ width: "100%" }}>
-            <Table>
-                <SortTableHead
-                    order={order}
-                    orderBy={orderBy}
-                    onRequestSort={handleRequestSort}
-                    headColumns={headColumns}
-                />
-                <TableBody>
-                    {(rows as unknown as { [x: string]: string | number }[])
-                        .sort(getComparator(order, orderBy))
-                        .map((row, index) => (
-                            <ChronicledWishRow
-                                key={index}
-                                loading={
-                                    [...characters, ...weapons].length === 0
-                                }
-                                row={row as unknown as ChronicledBannerRow}
-                            />
-                        ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <MainContentBox
+            title={
+                <FlexBox
+                    sx={{
+                        width: "100%",
+                        flexWrap: "wrap",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                    }}
+                >
+                    <TextStyled sx={{ color: theme.appbar.color }}>
+                        Chronicled Wish
+                    </TextStyled>
+                    <ToggleButtons
+                        color="primary"
+                        buttons={[
+                            {
+                                value: "asc",
+                                icon: <ArrowUpwardIcon fontSize="small" />,
+                            },
+                            {
+                                value: "desc",
+                                icon: <ArrowDownwardIcon fontSize="small" />,
+                            },
+                        ]}
+                        value={sortDirection}
+                        exclusive
+                        onChange={handleDirectionChange}
+                        highlightOnHover={false}
+                    />
+                </FlexBox>
+            }
+            contentProps={{ padding: 0 }}
+        >
+            <Stack divider={<Divider />}>
+                {rows.map((row, idx) => (
+                    <ChronicledWishRow key={idx} loading={loading} row={row} />
+                ))}
+            </Stack>
+        </MainContentBox>
     );
 }
 
 export default ChronicledWish;
-
-export interface ChronicledBannerRow {
-    version: string;
-    subVersion: string;
-    start: string;
-    end: string;
-    characters: string;
-    weapons: string;
-}
-
-function createBannerRows(
-    banners: ChronicledWishBanner[]
-): ChronicledBannerRow[] {
-    const characters = store.getState().characters.characters;
-    const weapons = store.getState().weapons.weapons;
-
-    const rows = banners.map((banner) => {
-        return {
-            version: banner.version,
-            subVersion: banner.subVersion,
-            start: banner.start,
-            end: banner.end,
-            characters: JSON.stringify(
-                objectKeys(banner.characters).map((rarity) =>
-                    banner.characters[rarity].map((char) => {
-                        const character = characters.find(
-                            (c) => c.name === char
-                        );
-                        return {
-                            name: character?.name || "TBA",
-                            displayName: character?.fullName || "TBA",
-                            rarity: character?.rarity || 1,
-                            element: character?.element,
-                            weapon: character?.weapon,
-                        };
-                    })
-                )
-            ),
-            weapons: JSON.stringify(
-                objectKeys(banner.weapons).map((rarity) =>
-                    banner.weapons[rarity].map((wep) => {
-                        const weapon = weapons.find((w) => w.name === wep);
-                        return {
-                            name: weapon?.name || "TBA",
-                            displayName: weapon?.displayName || "TBA",
-                            rarity: weapon?.rarity || 1,
-                            weapon: weapon?.type,
-                        };
-                    })
-                )
-            ),
-        };
-    });
-    return rows;
-}
