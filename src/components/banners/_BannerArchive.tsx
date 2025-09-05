@@ -88,25 +88,14 @@ function BannerArchive() {
                 value === "character" || value === "weapon" ? (
                     <Grid container spacing={4}>
                         <Grid size={{ xs: 12, lg: 6, xl: maxWidth }}>
-                            <TextStyled variant="h6-styled" sx={{ mb: "20px" }}>
-                                Character Banner
-                            </TextStyled>
                             {CharacterBannerList}
                         </Grid>
                         <Grid size={{ xs: 12, lg: 6, xl: maxWidth }}>
-                            <TextStyled variant="h6-styled" sx={{ mb: "20px" }}>
-                                Weapon Banner
-                            </TextStyled>
                             {WeaponBannerList}
                         </Grid>
                     </Grid>
                 ) : (
-                    <>
-                        <TextStyled variant="h6-styled" sx={{ mb: "20px" }}>
-                            Chronicled Wish
-                        </TextStyled>
-                        {ChronicledWishList}
-                    </>
+                    <>{ChronicledWishList}</>
                 )
             ) : (
                 <>
