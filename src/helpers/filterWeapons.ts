@@ -1,7 +1,7 @@
 import { Weapon } from "types/weapon";
 import { WeaponFilterState } from "reducers/weaponFilters";
 import { BrowserSettings } from "reducers/browser";
-import { sortBy } from "./utils";
+import { parseVersionNumber, sortBy } from "./utils";
 import { WeaponMap } from "data/common";
 
 export function filterWeapons(
@@ -94,13 +94,3 @@ export function filterWeapons(
 
     return weps;
 }
-
-const numerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
-
-const parseVersionNumber = (version: string) => {
-    if (version.startsWith("Luna")) {
-        return `5.${numerals.findIndex((i) => i === version.split(" ")[1])}`;
-    } else {
-        return version;
-    }
-};

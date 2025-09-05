@@ -52,6 +52,16 @@ export function zoomImageOnHover({
     }
 }
 
+const numerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
+
+export const parseVersionNumber = (version: string) => {
+    if (version.startsWith("Luna")) {
+        return `5.${numerals.findIndex((i) => i === version.split(" ")[1])}`;
+    } else {
+        return version;
+    }
+};
+
 export function isTBA(str: string) {
     return str === "TBA" || str === "To be announced";
 }
