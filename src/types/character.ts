@@ -74,6 +74,7 @@ export interface CharacterStats {
     hp: number[];
     atk: number[];
     def: number[];
+    em: number[];
 }
 
 export interface CharacterOutfit {

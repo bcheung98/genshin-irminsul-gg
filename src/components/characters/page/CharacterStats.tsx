@@ -4,18 +4,18 @@ import { BaseSyntheticEvent, useEffect, useState } from "react";
 import MainContentBox from "custom/MainContentBox";
 import StatsTable from "custom/StatsTable";
 import ToggleButtons from "custom/ToggleButtons";
+import { skillDisplayButtons } from "components/Settings";
 
 // MUI imports
 import { useTheme } from "@mui/material";
 
 // Helper imports
-import { skillDisplayButtons } from "components/Settings";
+import { useAppSelector } from "helpers/hooks";
+import { selectSkillDisplay, SkillDisplay } from "reducers/settings";
 import { characterAscensionStatScalings } from "data/characterAscensionStats";
 
 // Type imports
 import { CharacterProps } from "types/character";
-import { selectSkillDisplay, SkillDisplay } from "reducers/settings";
-import { useAppSelector } from "helpers/hooks";
 
 function CharacterStats({ character }: CharacterProps) {
     const theme = useTheme();
@@ -23,7 +23,8 @@ function CharacterStats({ character }: CharacterProps) {
     const { rarity, element, stats } = character;
     const ascensionStats = characterAscensionStatScalings(
         rarity,
-        stats.ascensionStat
+        stats.ascensionStat,
+        { em: stats.em }
     );
     const ascStatScaling = !["CRIT Rate", "CRIT DMG"].includes(
         stats.ascensionStat
@@ -54,6 +55,8 @@ function CharacterStats({ character }: CharacterProps) {
         "80",
         "80+",
         "90",
+        "95",
+        "100",
     ];
 
     const data = [
@@ -95,6 +98,14 @@ function CharacterStats({ character }: CharacterProps) {
             ),
         ],
     ];
+    stats.em.reduce((a, c) => a + c) != 0 &&
+        stats.ascensionStat !== "Elemental Mastery" &&
+        data.push([
+            "Elemental Mastery",
+            ...levels.map((_, index) =>
+                (stats.em[index] || 0).toLocaleString()
+            ),
+        ]);
     ascStatScaling &&
         data.push([
             stats.ascensionStat,
@@ -127,6 +138,7 @@ function CharacterStats({ character }: CharacterProps) {
                 data={data}
                 orientation="column"
                 sliderProps={{
+                    initialValue: 14,
                     sx: {
                         minWidth: "100px",
                         maxWidth: "50%",
