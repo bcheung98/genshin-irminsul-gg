@@ -11,7 +11,7 @@ import { useAppSelector } from "helpers/hooks";
 import { selectServer } from "reducers/settings";
 import { getRarity } from "helpers/createBannerData";
 import { createDateObject, isCurrentBanner } from "helpers/dates";
-import { isTBA } from "helpers/utils";
+import { isTBA, parseSubVersionNumber } from "helpers/utils";
 
 // Type imports
 import { ChronicledWishBannerData } from "types/banner";
@@ -54,7 +54,7 @@ function ChronicledWishRow({
                             : theme.text.contrast,
                 }}
             >
-                {`${version} Phase ${subVersion.split(".")[2]}: ${
+                {`${version} Phase ${parseSubVersionNumber(subVersion)}: ${
                     start.date
                 } — ${end.date}`}
             </TextStyled>

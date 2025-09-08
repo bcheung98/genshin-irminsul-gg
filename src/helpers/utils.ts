@@ -64,6 +64,14 @@ export const parseVersionNumber = (version: string) => {
     }
 };
 
+export const parseSubVersionNumber = (subVersion: string) => {
+    if (subVersion.startsWith("Luna")) {
+        return subVersion.split(".")[1];
+    } else {
+        return subVersion.split(".")[2];
+    }
+};
+
 export function isTBA(str: string) {
     return str === "TBA" || str === "To be announced";
 }
