@@ -727,7 +727,7 @@ export const talentMaterials = [
         displayName: "Moonlight",
         source: "Mon/Thu",
         rarity: 1,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "talentBook_18_0",
@@ -737,7 +737,7 @@ export const talentMaterials = [
         displayName: "Teachings of Moonlight",
         source: "Mon/Thu",
         rarity: 2,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "talentBook_18_1",
@@ -747,7 +747,7 @@ export const talentMaterials = [
         displayName: "Guide to Moonlight",
         source: "Mon/Thu",
         rarity: 3,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "talentBook_18_2",
@@ -757,7 +757,7 @@ export const talentMaterials = [
         displayName: "Philosophies of Moonlight",
         source: "Mon/Thu",
         rarity: 4,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "talentBook_19",
@@ -767,7 +767,7 @@ export const talentMaterials = [
         displayName: "Elysium",
         source: "Tue/Fri",
         rarity: 1,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "talentBook_19_0",
@@ -777,7 +777,7 @@ export const talentMaterials = [
         displayName: "Teachings of Elysium",
         source: "Tue/Fri",
         rarity: 2,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "talentBook_19_1",
@@ -787,7 +787,7 @@ export const talentMaterials = [
         displayName: "Guide to Elysium",
         source: "Tue/Fri",
         rarity: 3,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "talentBook_19_2",
@@ -797,7 +797,7 @@ export const talentMaterials = [
         displayName: "Philosophies of Elysium",
         source: "Tue/Fri",
         rarity: 4,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "talentBook_20",
@@ -807,7 +807,7 @@ export const talentMaterials = [
         displayName: "Vagrancy",
         source: "Wed/Sat",
         rarity: 1,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "talentBook_20_0",
@@ -817,7 +817,7 @@ export const talentMaterials = [
         displayName: "Teachings of Vagrancy",
         source: "Wed/Sat",
         rarity: 2,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "talentBook_20_1",
@@ -827,7 +827,7 @@ export const talentMaterials = [
         displayName: "Guide to Vagrancy",
         source: "Wed/Sat",
         rarity: 3,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "talentBook_20_2",
@@ -837,7 +837,7 @@ export const talentMaterials = [
         displayName: "Philosophies of Vagrancy",
         source: "Wed/Sat",
         rarity: 4,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
 ] as const;
 

@@ -880,7 +880,7 @@ export const eliteMaterials = [
         tag: "Frostnight",
         name: "Frostnight Scion Crown",
         displayName: "Frostnight Scion Crown",
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "eliteMat_25_0",
@@ -889,7 +889,7 @@ export const eliteMaterials = [
         name: "Frostnight's Glimmer",
         displayName: "Frostnight's Glimmer",
         rarity: 2,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "eliteMat_25_1",
@@ -898,7 +898,7 @@ export const eliteMaterials = [
         name: "Frostnight's Glow",
         displayName: "Frostnight's Glow",
         rarity: 3,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "eliteMat_25_2",
@@ -907,15 +907,15 @@ export const eliteMaterials = [
         name: "Frostnight's Glory",
         displayName: "Frostnight's Glory",
         rarity: 4,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "eliteMat_26",
         category: "eliteMat",
         tag: "Mutant",
-        name: "Radiant Mutant Bone",
-        displayName: "Radiant Mutant Bone",
-        release: { version: "6.0" },
+        name: "Radiant Beast Bone",
+        displayName: "Radiant Beast Bone",
+        release: { version: "Luna I" },
     },
     {
         id: "eliteMat_26_0",
@@ -924,7 +924,7 @@ export const eliteMaterials = [
         name: "Lightless Bone",
         displayName: "Lightless Bone",
         rarity: 2,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "eliteMat_26_1",
@@ -933,7 +933,7 @@ export const eliteMaterials = [
         name: "Duskshard Remains",
         displayName: "Duskshard Remains",
         rarity: 3,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "eliteMat_26_2",
@@ -942,7 +942,7 @@ export const eliteMaterials = [
         name: "Radiant Exoskeleton",
         displayName: "Radiant Exoskeleton",
         rarity: 4,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "eliteMat_27",
@@ -950,7 +950,7 @@ export const eliteMaterials = [
         tag: "Wild Mist",
         name: "Wild Hunt Mist",
         displayName: "Wild Hunt Mist",
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "eliteMat_27_0",
@@ -959,7 +959,7 @@ export const eliteMaterials = [
         name: "Solidified Mist",
         displayName: "Mistshroud Manifestation",
         rarity: 2,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "eliteMat_27_1",
@@ -968,7 +968,7 @@ export const eliteMaterials = [
         name: "Mist Plate",
         displayName: "Mistshroud Plate",
         rarity: 3,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "eliteMat_27_2",
@@ -977,7 +977,7 @@ export const eliteMaterials = [
         name: "Mist Helmet",
         displayName: "Mistshroud Helmet",
         rarity: 4,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
 ] as const;
 

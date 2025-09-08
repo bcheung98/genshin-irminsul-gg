@@ -530,7 +530,7 @@ export const commonMaterials = [
         tag: "Shaft",
         name: "Landcruiser Shaft",
         displayName: "Landcruiser Shaft",
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "commonMat_15_0",
@@ -539,7 +539,7 @@ export const commonMaterials = [
         name: "Broken Drive Shaft",
         displayName: "Broken Drive Shaft",
         rarity: 1,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "commonMat_15_1",
@@ -548,7 +548,7 @@ export const commonMaterials = [
         name: "Reinforced Drive Shaft",
         displayName: "Reinforced Drive Shaft",
         rarity: 2,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "commonMat_15_2",
@@ -557,7 +557,7 @@ export const commonMaterials = [
         name: "Precision Drive Shaft",
         displayName: "Precision Drive Shaft",
         rarity: 3,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "commonMat_16",
@@ -565,7 +565,7 @@ export const commonMaterials = [
         tag: "Warrant",
         name: "Fatui Oprichniki Warrant",
         displayName: "Fatui Oprichniki Warrant",
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "commonMat_16_0",
@@ -574,7 +574,7 @@ export const commonMaterials = [
         name: "Tattered Warrant",
         displayName: "Tattered Warrant",
         rarity: 1,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "commonMat_16_1",
@@ -583,7 +583,7 @@ export const commonMaterials = [
         name: "Immaculate Warrant",
         displayName: "Immaculate Warrant",
         rarity: 2,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "commonMat_16_2",
@@ -592,7 +592,7 @@ export const commonMaterials = [
         name: "Frost-Etched Warrant",
         displayName: "Frost-Etched Warrant",
         rarity: 3,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
 ] as const;
 

@@ -519,7 +519,7 @@ export const localMaterials = [
         displayName: "Frostlamp Flower",
         source: "Nod-Krai",
         rarity: 1,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "localMat_6_1",
@@ -529,7 +529,7 @@ export const localMaterials = [
         displayName: "Moonfall Silver",
         source: "Nod-Krai",
         rarity: 1,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "localMat_6_2",
@@ -539,7 +539,7 @@ export const localMaterials = [
         displayName: "Portable Bearing",
         source: "Nod-Krai",
         rarity: 1,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
 ] as const;
 

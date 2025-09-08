@@ -387,7 +387,7 @@ export const bossMaterials = [
         displayName: "Lightbearing Scale-Feather",
         source: "Radiant Moonfly",
         rarity: 4,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
     {
         id: "bossMat_39",
@@ -397,7 +397,7 @@ export const bossMaterials = [
         displayName: "Precision Kuuvahki Stamping Die",
         source: "Knuckle Duckle",
         rarity: 4,
-        release: { version: "6.0" },
+        release: { version: "Luna I" },
     },
 ] as const;
 
