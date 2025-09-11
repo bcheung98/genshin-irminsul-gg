@@ -53,7 +53,7 @@ function getMaterialData(
     let mat: Material | undefined;
     switch (key) {
         case "credits":
-            return { name: "Credits", rarity: 3, img: "Mora" };
+            return { name: "Mora", rarity: 3, img: "Mora" };
         case "characterXP":
             mat = getCharacterXPMaterial({ tag: material, id: material })!;
             return {
