@@ -402,9 +402,9 @@ export const bossMaterials = [
     {
         id: "bossMat_40",
         category: "bossMat",
-        tag: "bossMat_40",
-        name: "bossMat_40",
-        displayName: "???",
+        tag: "Glowing Antler",
+        name: "Glowing Antler",
+        displayName: "Glowing Antler",
         source: "Frostnight Herra",
         rarity: 4,
         release: { version: "Luna II" },
