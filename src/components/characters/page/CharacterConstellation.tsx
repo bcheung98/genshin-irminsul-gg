@@ -47,61 +47,49 @@ function CharacterConstellation({ character }: CharacterProps) {
         <>
             <MainContentBox title="Constellation">
                 <Grid container spacing={3}>
-                    {objectKeys(constellation).map(
-                        (key, index) =>
-                            key !== "name" && (
-                                <Grid
-                                    key={key}
-                                    size={{ xs: 12, md: 6 }}
-                                    sx={{
-                                        p: 2,
-                                        backgroundColor: theme.background(
-                                            1,
-                                            "light"
-                                        ),
-                                        border: theme.mainContentBox.border,
-                                        borderRadius:
-                                            theme.mainContentBox.borderRadius,
-                                    }}
-                                >
-                                    <Stack
-                                        key={index}
-                                        spacing={2}
-                                        direction="row"
-                                        alignItems="center"
-                                        sx={{ mb: "8px" }}
-                                    >
-                                        <Image
-                                            src={`characters/constellations/${name.toLowerCase()}_${key}`}
-                                            alt={key}
-                                            style={theme.styles.skillIcon(
-                                                element
-                                            )}
-                                        />
-                                        <Box>
-                                            <TextStyled variant="h6-styled">
-                                                {constellation[key].name}
-                                            </TextStyled>
-                                            <TextStyled
-                                                sx={{ fontStyle: "italic" }}
-                                            >
-                                                {key.toUpperCase()}
-                                            </TextStyled>
-                                        </Box>
-                                    </Stack>
-                                    <Text
-                                        component="span"
-                                        sx={{ color: theme.text.description }}
-                                    >
-                                        {parseSkillDescription({
-                                            description:
-                                                constellation[key].description,
-                                            onClick: handleDialogOpen,
-                                        })}
-                                    </Text>
-                                </Grid>
-                            )
-                    )}
+                    {objectKeys(constellation).map((key, index) => (
+                        <Grid
+                            key={key}
+                            size={{ xs: 12, md: 6 }}
+                            sx={{
+                                p: 2,
+                                backgroundColor: theme.background(1, "light"),
+                                border: theme.mainContentBox.border,
+                                borderRadius: theme.mainContentBox.borderRadius,
+                            }}
+                        >
+                            <Stack
+                                key={index}
+                                spacing={2}
+                                direction="row"
+                                alignItems="center"
+                                sx={{ mb: "8px" }}
+                            >
+                                <Image
+                                    src={`characters/constellations/${name.toLowerCase()}_${key}`}
+                                    alt={key}
+                                    style={theme.styles.skillIcon(element)}
+                                />
+                                <Box>
+                                    <TextStyled variant="h6-styled">
+                                        {constellation[key].name}
+                                    </TextStyled>
+                                    <TextStyled sx={{ fontStyle: "italic" }}>
+                                        {key.toUpperCase()}
+                                    </TextStyled>
+                                </Box>
+                            </Stack>
+                            <Text
+                                component="span"
+                                sx={{ color: theme.text.description }}
+                            >
+                                {parseSkillDescription({
+                                    description: constellation[key].description,
+                                    onClick: handleDialogOpen,
+                                })}
+                            </Text>
+                        </Grid>
+                    ))}
                 </Grid>
             </MainContentBox>
             <Dialog

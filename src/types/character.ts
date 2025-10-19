@@ -25,6 +25,7 @@ export interface Character {
     stats: CharacterStats;
     materials: CharacterMaterials;
     description: string;
+    constellationName: string;
     birthday: string;
     gender: "Male" | "Female";
     nation: Nation;
@@ -60,7 +61,6 @@ export type CharacterConstellationKey = Exclude<
     "name"
 >;
 export interface CharacterConstellations {
-    name: string;
     c1: Skill;
     c2: Skill;
     c3: Skill;

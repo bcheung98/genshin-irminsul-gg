@@ -25,7 +25,7 @@ function CharacterInfoMisc({ character }: CharacterProps) {
 
     const region = useAppSelector(selectServer);
 
-    const { constellation, birthday, voiceActors, release, nation } = {
+    const { constellationName, birthday, voiceActors, release, nation } = {
         ...character,
     };
     const releaseDate =
@@ -35,7 +35,7 @@ function CharacterInfoMisc({ character }: CharacterProps) {
     const releaseVersion = release.version;
 
     const rows = [
-        { key: "Constellation", value: constellation.name },
+        { key: "Constellation", value: constellationName },
         { key: "Nation", value: nation },
         { key: "Birthday", value: birthday || "---" },
         { key: "Release", value: `${releaseDate} (${releaseVersion})` },
