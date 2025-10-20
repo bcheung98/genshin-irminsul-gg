@@ -116,7 +116,7 @@ function TCGKeywordPopup({ handleClose, keyword }: TCGKeywordPopupProps) {
                 )}
                 <Box>
                     <TextStyled
-                        variant="h5-styled"
+                        variant="h6-styled"
                         sx={{ color: theme.appbar.color }}
                     >
                         {keyword.name}
@@ -202,14 +202,7 @@ function TCGKeywordPopup({ handleClose, keyword }: TCGKeywordPopupProps) {
                         )}
                         <Box>
                             {keyword.tag !== mainKeyword && (
-                                <TextStyled
-                                    variant={
-                                        !isSubKeyword ||
-                                        isKeywordSkill(keyword.type)
-                                            ? "h6-styled"
-                                            : "h6-styled"
-                                    }
-                                >
+                                <TextStyled variant="h6-styled">
                                     {parseTCGSkillDescription({
                                         description: keyword.name,
                                         theme: theme,
@@ -221,11 +214,7 @@ function TCGKeywordPopup({ handleClose, keyword }: TCGKeywordPopupProps) {
                                 (!isSubKeyword ||
                                     isKeywordSkill(keyword.type)) && (
                                     <TextStyled
-                                        variant={
-                                            isSubKeyword
-                                                ? "body1-styled"
-                                                : "h6-styled"
-                                        }
+                                        variant="body1-styled"
                                         sx={{ color: theme.text.highlight }}
                                     >
                                         {parseTCGSkillDescription({
