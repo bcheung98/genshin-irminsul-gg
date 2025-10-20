@@ -305,6 +305,11 @@ export const tcgCommonKeywords: TCGKeyword[] = [
         name: "Satiated",
         description: `You cannot consume more Icon_Food Food this Round`,
     },
+    {
+        tag: "adventure",
+        name: "Adventure",
+        description: `<span class="tooltip-select">Select</span> 1 available adventure spot to create.<br />If you already have an adventure spot, its Adventure Experience will be increased by 1.`,
+    },
 
     // Misc
     {
