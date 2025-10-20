@@ -13,6 +13,7 @@ export const tcgFactions = [
     "Inazuma",
     "Sumeru",
     "Fontaine",
+    "Natlan",
     "Eremite",
     "Fatui",
     "Hilichurl",
