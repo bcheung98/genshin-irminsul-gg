@@ -295,7 +295,7 @@ function getCosts({
                         levelUpCost.weeklyBossMat.weeklyBossMat,
                 },
                 crown: {
-                    Crown: levelUpCost.crown.crown,
+                    Crown: levelUpCost.crown.Crown,
                 },
             } as TotalCostObject;
             break;
