@@ -382,8 +382,8 @@ export const bossMaterials = [
     {
         id: "bossMat_38",
         category: "bossMat",
-        tag: "Lightbearing Wings",
-        name: "Lightbearing Wings",
+        tag: "Lightbearing Scale-Feather",
+        name: "Lightbearing Scale-Feather",
         displayName: "Lightbearing Scale-Feather",
         source: "Radiant Moonfly",
         rarity: 4,
@@ -402,12 +402,22 @@ export const bossMaterials = [
     {
         id: "bossMat_40",
         category: "bossMat",
-        tag: "Glowing Antler",
-        name: "Glowing Antler",
+        tag: "Radiant Antler",
+        name: "Radiant Antler",
         displayName: "Radiant Antler",
         source: "Frostnight Herra",
         rarity: 4,
         release: { version: "Luna II" },
+    },
+    {
+        id: "bossMat_41",
+        category: "bossMat",
+        tag: "Cyclic Military Kuuvahki Core",
+        name: "Cyclic Military Kuuvahki Core",
+        displayName: "Cyclic Military Kuuvahki Core",
+        source: "Super-Heavy Landrover: Mechanized Fortresses",
+        rarity: 4,
+        release: { version: "Luna III" },
     },
 ] as const;
 
