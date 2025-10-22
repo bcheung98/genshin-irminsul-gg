@@ -124,6 +124,8 @@ function formatPassiveKey(type: CharacterPassiveType) {
             return "Utility Passive";
         case "moon":
             return "Moonsign Benediction";
+        case "witch":
+            return "Witch's Eve Rite";
         case "":
         default:
             return "Passive Talent";

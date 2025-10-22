@@ -51,6 +51,7 @@ export type CharacterPassiveType =
     | "util"
     | "nightsoul"
     | "moon"
+    | "witch"
     | "";
 export interface CharacterPassive extends Skill {
     type: CharacterPassiveType;
