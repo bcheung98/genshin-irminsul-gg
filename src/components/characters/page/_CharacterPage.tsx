@@ -1,3 +1,4 @@
+import { BaseSyntheticEvent, useState } from "react";
 import { useParams } from "react-router";
 
 // Component imports
@@ -19,6 +20,9 @@ import Grid from "@mui/material/Grid2";
 // Helper imports
 import { useAppSelector } from "helpers/hooks";
 import { selectCharacters } from "reducers/character";
+
+// Type imports
+import { Skill } from "types/skill";
 
 function CharacterPage() {
     const theme = useTheme();
@@ -44,6 +48,57 @@ function CharacterPage() {
         document
             .querySelector('meta[property="og:description"]')
             ?.setAttribute("content", documentDesc);
+
+        const versions = [{ value: "v1", label: "Original" }];
+
+        Object.values(character.skills).forEach((skills) => {
+            skills.forEach((skill: Skill) => {
+                if (
+                    skill.version &&
+                    !JSON.stringify(versions).includes(
+                        JSON.stringify(skill.version)
+                    )
+                ) {
+                    versions.unshift(skill.version);
+                }
+            });
+        });
+        character.passives.forEach((skill) => {
+            if (
+                skill.version &&
+                !JSON.stringify(versions).includes(
+                    JSON.stringify(skill.version)
+                )
+            ) {
+                versions.unshift(skill.version);
+            }
+        });
+        character.constellation.forEach((skill) => {
+            if (
+                skill.version &&
+                !JSON.stringify(versions).includes(
+                    JSON.stringify(skill.version)
+                )
+            ) {
+                versions.unshift(skill.version);
+            }
+        });
+
+        const [value, setValue] = useState(versions[0].value);
+        const handleVersionChange = (
+            _: BaseSyntheticEvent,
+            newVersion: string
+        ) => {
+            if (newVersion !== null) {
+                setValue(newVersion);
+            }
+        };
+
+        const buffs = {
+            versions,
+            value,
+            onChange: handleVersionChange,
+        };
 
         const betaTag = <BetaTag version={character.release.version} />;
 
@@ -82,9 +137,9 @@ function CharacterPage() {
                         {infoMisc}
                     </>
                 )}
-                <CharacterSkills character={character} />
-                <CharacterPassives character={character} />
-                <CharacterConstellation character={character} />
+                <CharacterSkills character={character} buffs={buffs} />
+                <CharacterPassives character={character} buffs={buffs} />
+                <CharacterConstellation character={character} buffs={buffs} />
             </Stack>
         );
     } else {

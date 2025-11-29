@@ -4,6 +4,10 @@ export interface Skill {
     name: string;
     description: string;
     splash?: string;
+    version?: {
+        value: string;
+        label: string;
+    };
 }
 
 export interface SkillWithScaling extends Skill {

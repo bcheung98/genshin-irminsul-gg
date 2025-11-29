@@ -1,6 +1,7 @@
 import { useState, BaseSyntheticEvent } from "react";
 
 // Component imports
+import CharacterBuffs from "./CharacterBuffs";
 import CharacterSkillKeywordPopup from "./skills/CharacterSkillKeywordPopup";
 import MainContentBox from "custom/MainContentBox";
 import Image from "custom/Image";
@@ -11,18 +12,31 @@ import { useTheme, Stack, Box, Dialog } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 
 // Helper imports
-import { objectKeys } from "helpers/utils";
 import { parseSkillDescription } from "helpers/parseSkillDescription";
 import { getSkillKeyword } from "helpers/getSkillKeyword";
 
 // Type imports
-import { CharacterProps } from "types/character";
+import { CharacterConstellations, CharacterProps } from "types/character";
 import { SkillKeyword } from "types/skill";
 
-function CharacterConstellation({ character }: CharacterProps) {
+function CharacterConstellation({ character, buffs }: CharacterProps) {
     const theme = useTheme();
 
-    const { name, element, constellation } = character;
+    const { name, element } = character;
+
+    const indexes: number[] = [];
+    const constellation: CharacterConstellations[] = [];
+    character.constellation.forEach((con) => {
+        if (!indexes.includes(con.index)) {
+            indexes.push(con.index);
+            constellation.push(con);
+        } else {
+            if (buffs && buffs.value === con.version?.value) {
+                constellation.pop();
+                constellation.push(con);
+            }
+        }
+    });
 
     const [currentKeyword, setCurrentKeyword] = useState<SkillKeyword | null>(
         null
@@ -32,6 +46,7 @@ function CharacterConstellation({ character }: CharacterProps) {
         const keyword = getSkillKeyword({
             tag: event.target.className.split("-")[1],
             character,
+            buffValue: buffs?.value,
         });
         if (keyword) {
             setCurrentKeyword(keyword);
@@ -45,11 +60,14 @@ function CharacterConstellation({ character }: CharacterProps) {
 
     return (
         <>
-            <MainContentBox title="Constellation">
+            <MainContentBox
+                title="Constellation"
+                actions={<CharacterBuffs {...buffs} />}
+            >
                 <Grid container spacing={3}>
-                    {objectKeys(constellation).map((key, index) => (
+                    {constellation.map((con, index) => (
                         <Grid
-                            key={key}
+                            key={index}
                             size={{ xs: 12, md: 6 }}
                             sx={{
                                 p: 2,
@@ -59,23 +77,24 @@ function CharacterConstellation({ character }: CharacterProps) {
                             }}
                         >
                             <Stack
-                                key={index}
                                 spacing={2}
                                 direction="row"
                                 alignItems="center"
                                 sx={{ mb: "8px" }}
                             >
                                 <Image
-                                    src={`characters/constellations/${name.toLowerCase()}_${key}`}
-                                    alt={key}
+                                    src={`characters/constellations/${name.toLowerCase()}_c${
+                                        con.index
+                                    }`}
+                                    alt={`c${con.index}`}
                                     style={theme.styles.skillIcon(element)}
                                 />
                                 <Box>
                                     <TextStyled variant="h6-styled">
-                                        {constellation[key].name}
+                                        {con.name}
                                     </TextStyled>
                                     <TextStyled sx={{ fontStyle: "italic" }}>
-                                        {key.toUpperCase()}
+                                        {`C${con.index}`}
                                     </TextStyled>
                                 </Box>
                             </Stack>
@@ -84,7 +103,7 @@ function CharacterConstellation({ character }: CharacterProps) {
                                 sx={{ color: theme.text.description }}
                             >
                                 {parseSkillDescription({
-                                    description: constellation[key].description,
+                                    description: con.description,
                                     onClick: handleDialogOpen,
                                 })}
                             </Text>

@@ -68,13 +68,15 @@ function CharacterInfoMain({ character }: CharacterProps) {
                                 src={`weapons/icons/${weapon}`}
                                 label={weapon}
                             />
-                            {character.arkhe && (
-                                <InfoChip
-                                    color="tertiary"
-                                    src={`tcg/icons/factions/${character.arkhe}`}
-                                    label={`Arkhe: ${character.arkhe}`}
-                                />
-                            )}
+                            {character.arkhe &&
+                                character.arkhe.map((arkhe) => (
+                                    <InfoChip
+                                        key={arkhe}
+                                        color="tertiary"
+                                        src={`tcg/icons/factions/${arkhe}`}
+                                        label={`Arkhe: ${arkhe}`}
+                                    />
+                                ))}
                         </FlexBox>
                     </Box>
                 </FlexBox>

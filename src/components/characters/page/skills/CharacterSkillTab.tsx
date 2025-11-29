@@ -7,7 +7,7 @@ import CharacterSkillKeywordPopup from "./CharacterSkillKeywordPopup";
 import { Text, TextStyled } from "styled/StyledTypography";
 
 // MUI imports
-import { useTheme, Box, Divider, Stack, Dialog } from "@mui/material";
+import { useTheme, Box, Stack, Dialog } from "@mui/material";
 
 // Helper imports
 import { parseSkillDescription } from "helpers/parseSkillDescription";
@@ -15,15 +15,16 @@ import { getSkillKeyword } from "helpers/getSkillKeyword";
 
 // Type imports
 import { Element } from "types/_common";
-import { Character, CharacterSkillKey } from "types/character";
+import { Character, CharacterBuffs, CharacterSkillKey } from "types/character";
 import { CharacterMaterials } from "types/materials";
 import { LevelUpCostSkillKeys } from "custom/LevelUpCosts";
-import { SkillKeyword, SkillWithScaling } from "types/skill";
+import { SkillKeyword } from "types/skill";
 
 interface CharacterSkillTabProps {
     mode: "table" | "slider";
     character: Character;
     skillKey: CharacterSkillKey;
+    buffs?: CharacterBuffs;
 }
 
 export interface CharacterSkillScalingProps {
@@ -42,11 +43,19 @@ function CharacterSkillTab({
     mode,
     character,
     skillKey,
+    buffs,
 }: CharacterSkillTabProps) {
     const theme = useTheme();
 
     const { element, materials } = character;
-    const skill = character.skills[skillKey] as SkillWithScaling;
+    let skillData = character.skills[skillKey]!;
+    if (buffs && buffs?.value !== "v1" && skillData.length > 1) {
+        skillData = skillData.filter(
+            (skill) => skill.version?.value === buffs.value
+        );
+    } else {
+        skillData = skillData.slice(0, 1);
+    }
 
     const [currentKeyword, setCurrentKeyword] = useState<SkillKeyword | null>(
         null
@@ -56,6 +65,7 @@ function CharacterSkillTab({
         const keyword = getSkillKeyword({
             tag: event.target.className.split("-")[1],
             character,
+            buffValue: buffs?.value
         });
         if (keyword) {
             setCurrentKeyword(keyword);
@@ -69,46 +79,56 @@ function CharacterSkillTab({
 
     return (
         <>
-            <Stack spacing={3} divider={<Divider />} sx={{ pb: "16px" }}>
-                <Box>
-                    <Box sx={{ mb: "24px" }}>
-                        <TextStyled sx={{ mb: "8px", fontStyle: "italic" }}>
-                            {formatSkillKey(skillKey)}
-                        </TextStyled>
-                        <TextStyled variant="h6-styled" sx={{ mb: "8px" }}>
-                            {skill.name}
-                        </TextStyled>
-                        <Text
-                            component="span"
-                            sx={{ color: theme.text.description }}
-                        >
-                            {parseSkillDescription({
-                                description: skill.description,
-                                onClick: handleDialogOpen,
-                            })}
-                        </Text>
-                    </Box>
-                    <Text variant="subtitle1" sx={{ fontStyle: "italic" }}>
-                        {skill.splash &&
-                            parseSkillDescription({
-                                description: skill.splash,
-                            })}
-                    </Text>
-                    <Stack spacing={2} sx={{ mt: "24px" }}>
-                        <CharacterSkillScaling
-                            mode={mode}
-                            scaling={skill.scaling}
-                            element={element}
-                        />
-                        {skillKey !== "altsprint" && (
-                            <CharacterSkillLevelUpCost
-                                skillKey={skillKey}
-                                element={element}
-                                materials={materials}
-                            />
-                        )}
-                    </Stack>
-                </Box>
+            <Stack spacing={1} sx={{ mb: 2 }}>
+                <TextStyled sx={{ fontStyle: "italic" }}>
+                    {formatSkillKey(skillKey)}
+                </TextStyled>
+                <Stack spacing={2}>
+                    {skillData.map((skill, index) => (
+                        <Box key={`${skillKey}-${index}`}>
+                            <Box sx={{ mb: "24px" }}>
+                                <TextStyled
+                                    variant="h6-styled"
+                                    sx={{ mb: "8px" }}
+                                >
+                                    {skill.name}
+                                </TextStyled>
+                                <Text
+                                    component="span"
+                                    sx={{ color: theme.text.description }}
+                                >
+                                    {parseSkillDescription({
+                                        description: skill.description,
+                                        onClick: handleDialogOpen,
+                                    })}
+                                </Text>
+                            </Box>
+                            <Text
+                                variant="subtitle1"
+                                sx={{ fontStyle: "italic" }}
+                            >
+                                {skill.splash &&
+                                    parseSkillDescription({
+                                        description: skill.splash,
+                                    })}
+                            </Text>
+                            <Stack spacing={2} sx={{ mt: "24px" }}>
+                                <CharacterSkillScaling
+                                    mode={mode}
+                                    scaling={skill.scaling}
+                                    element={element}
+                                />
+                                {skillKey !== "altsprint" && (
+                                    <CharacterSkillLevelUpCost
+                                        skillKey={skillKey}
+                                        element={element}
+                                        materials={materials}
+                                    />
+                                )}
+                            </Stack>
+                        </Box>
+                    ))}
+                </Stack>
             </Stack>
             <Dialog
                 open={dialogOpen}

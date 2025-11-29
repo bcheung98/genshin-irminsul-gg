@@ -2,9 +2,11 @@ import { BaseSyntheticEvent, CSSProperties, useEffect, useState } from "react";
 
 // Component imports
 import CharacterSkillTab from "./CharacterSkillTab";
+import CharacterBuffs from "../CharacterBuffs";
 import MainContentBox from "custom/MainContentBox";
 import Image from "custom/Image";
 import ToggleButtons from "custom/ToggleButtons";
+import { FlexBox } from "styled/StyledBox";
 import { StyledTab, StyledTabs, TabPanel } from "styled/StyledTabs";
 
 // MUI imports
@@ -19,7 +21,7 @@ import { useAppSelector } from "helpers/hooks";
 // Type imports
 import { CharacterProps } from "types/character";
 
-function CharacterSkills({ character }: CharacterProps) {
+function CharacterSkills({ character, buffs }: CharacterProps) {
     const theme = useTheme();
     const matches_sm_up = useMediaQuery(theme.breakpoints.up("sm"));
 
@@ -65,16 +67,19 @@ function CharacterSkills({ character }: CharacterProps) {
         <MainContentBox
             title="Combat Talents"
             actions={
-                <ToggleButtons
-                    color="secondary"
-                    buttons={skillDisplayButtons}
-                    value={mode}
-                    exclusive
-                    onChange={handleMode}
-                    spacing={0}
-                    padding={10}
-                    highlightOnHover={false}
-                />
+                <FlexBox gap={2}>
+                    <CharacterBuffs {...buffs} />
+                    <ToggleButtons
+                        color="secondary"
+                        buttons={skillDisplayButtons}
+                        value={mode}
+                        exclusive
+                        onChange={handleMode}
+                        spacing={0}
+                        padding={10}
+                        highlightOnHover={false}
+                    />
+                </FlexBox>
             }
             contentProps={{ padding: 0 }}
         >
@@ -123,6 +128,7 @@ function CharacterSkills({ character }: CharacterProps) {
                         mode={mode}
                         character={character}
                         skillKey={key}
+                        buffs={buffs}
                     />
                 </TabPanel>
             ))}

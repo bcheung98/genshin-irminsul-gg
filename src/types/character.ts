@@ -3,9 +3,11 @@ import { Rarity, Element, WeaponType, Nation, Arkhe } from "./_common";
 import { CharacterMaterials } from "./materials";
 import { SkillWithScaling, Skill, SkillKeyword } from "./skill";
 import { VersionWithDate } from "./version";
+import { CustomToggleButtonProps } from "custom/ToggleButtons";
 
 export interface CharacterProps {
     character: Character;
+    buffs?: CharacterBuffs;
 }
 
 export interface Character {
@@ -16,11 +18,11 @@ export interface Character {
     title: string;
     rarity: Rarity;
     element: Element;
-    arkhe?: Arkhe;
+    arkhe?: Arkhe[];
     weapon: WeaponType;
     skills: CharacterSkills;
     passives: CharacterPassive[];
-    constellation: CharacterConstellations;
+    constellation: CharacterConstellations[];
     keywords?: SkillKeyword[];
     stats: CharacterStats;
     materials: CharacterMaterials;
@@ -39,10 +41,10 @@ export interface Character {
 
 export type CharacterSkillKey = keyof CharacterSkills;
 export interface CharacterSkills {
-    attack: SkillWithScaling;
-    skill: SkillWithScaling;
-    burst: SkillWithScaling;
-    altsprint?: SkillWithScaling;
+    attack: SkillWithScaling[];
+    skill: SkillWithScaling[];
+    burst: SkillWithScaling[];
+    altsprint?: SkillWithScaling[];
 }
 
 export type CharacterPassiveType =
@@ -51,7 +53,7 @@ export type CharacterPassiveType =
     | "util"
     | "nightsoul"
     | "moon"
-    | "witch"
+    | "special"
     | "";
 export interface CharacterPassive extends Skill {
     type: CharacterPassiveType;
@@ -61,13 +63,8 @@ export type CharacterConstellationKey = Exclude<
     keyof CharacterConstellations,
     "name"
 >;
-export interface CharacterConstellations {
-    c1: Skill;
-    c2: Skill;
-    c3: Skill;
-    c4: Skill;
-    c5: Skill;
-    c6: Skill;
+export interface CharacterConstellations extends Skill {
+    index: number;
 }
 
 export interface CharacterStats {
@@ -83,4 +80,10 @@ export interface CharacterOutfit {
     displayName?: string;
     rarity: Rarity;
     description: string;
+}
+
+export interface CharacterBuffs {
+    versions?: CustomToggleButtonProps[];
+    value?: string;
+    onChange?: (arg0: any, arg1: any) => void;
 }

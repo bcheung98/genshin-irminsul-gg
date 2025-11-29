@@ -1,6 +1,7 @@
 import { useState, BaseSyntheticEvent } from "react";
 
 // Component imports
+import CharacterBuffs from "./CharacterBuffs";
 import CharacterSkillKeywordPopup from "./skills/CharacterSkillKeywordPopup";
 import MainContentBox from "custom/MainContentBox";
 import Image from "custom/Image";
@@ -15,13 +16,31 @@ import { parseSkillDescription } from "helpers/parseSkillDescription";
 import { getSkillKeyword } from "helpers/getSkillKeyword";
 
 // Type imports
-import { CharacterPassiveType, CharacterProps } from "types/character";
+import {
+    CharacterPassive,
+    CharacterPassiveType,
+    CharacterProps,
+} from "types/character";
 import { SkillKeyword } from "types/skill";
 
-function CharacterPassives({ character }: CharacterProps) {
+function CharacterPassives({ character, buffs }: CharacterProps) {
     const theme = useTheme();
 
-    const { name, element, passives } = character;
+    const { name, element } = character;
+
+    const types: CharacterPassiveType[] = [];
+    const passives: CharacterPassive[] = [];
+    character.passives.forEach((con) => {
+        if (!types.includes(con.type)) {
+            types.push(con.type);
+            passives.push(con);
+        } else {
+            if (buffs && buffs.value === con.version?.value) {
+                passives.pop();
+                passives.push(con);
+            }
+        }
+    });
 
     const [currentKeyword, setCurrentKeyword] = useState<SkillKeyword | null>(
         null
@@ -31,6 +50,7 @@ function CharacterPassives({ character }: CharacterProps) {
         const keyword = getSkillKeyword({
             tag: event.target.className.split("-")[1],
             character,
+            buffValue: buffs?.value,
         });
         if (keyword) {
             setCurrentKeyword(keyword);
@@ -44,7 +64,10 @@ function CharacterPassives({ character }: CharacterProps) {
 
     return (
         <>
-            <MainContentBox title="Passive Talents">
+            <MainContentBox
+                title="Passive Talents"
+                actions={<CharacterBuffs {...buffs} />}
+            >
                 <Grid container spacing={3}>
                     {passives.map((passive, index) => (
                         <Grid
@@ -124,8 +147,8 @@ function formatPassiveKey(type: CharacterPassiveType) {
             return "Utility Passive";
         case "moon":
             return "Moonsign Benediction";
-        case "witch":
-            return "Witch's Eve Rite";
+        case "special":
+            return "";
         case "":
         default:
             return "Passive Talent";
