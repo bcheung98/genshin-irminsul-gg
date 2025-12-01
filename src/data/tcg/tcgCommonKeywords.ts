@@ -124,6 +124,17 @@ export const tcgCommonKeywords: TCGKeyword[] = [
             ${Reactions.Frozen({ element: "Cryo" })}`,
     },
     {
+        tag: "cryo reaction",
+        name: `<span class="text-cryo">Cryo-Related Reactions</span>`,
+        icon: "icons/elements/Cryo",
+        description: `
+            ${Reactions.Frozen({ element: "Cryo" })}<br />
+            ${Reactions.Melt({ element: "Cryo" })}<br />
+            ${Reactions.Superconduct({ element: "Cryo" })}<br />
+            ${Reactions.Swirl({ element: "Cryo" })}<br />
+            ${Reactions.Crystallize({ element: "Cryo" })}`,
+    },
+    {
         tag: "anemo",
         name: `<span class="text-anemo">Anemo DMG</span>`,
         icon: "icons/elements/Anemo",
@@ -152,6 +163,25 @@ export const tcgCommonKeywords: TCGKeyword[] = [
             ${Reactions.Crystallize({ element: "Hydro" })}<br />
             ${Reactions.Crystallize({ element: "Electro" })}<br />
             ${Reactions.Crystallize({ element: "Cryo" })}`,
+    },
+    {
+        tag: "geo application",
+        name: `<span class="text-geo">Geo Application</span>`,
+        icon: "icons/elements/Geo",
+        description: `When Geo is applied without dealing any DMG, the Elemental Reaction triggered will ignore DMG-dealing effects:<br />
+            ${Reactions.Crystallize({
+                element: "Pyro",
+                application: true,
+            })}<br />
+            ${Reactions.Crystallize({
+                element: "Hydro",
+                application: true,
+            })}<br />
+            ${Reactions.Crystallize({
+                element: "Electro",
+                application: true,
+            })}<br />
+            ${Reactions.Crystallize({ element: "Cryo", application: true })}`,
     },
     {
         tag: "dendro",

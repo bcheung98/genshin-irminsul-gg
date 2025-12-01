@@ -227,6 +227,7 @@ function formatTCGTalentKey(key: string) {
             key = "Elemental Burst";
             break;
         case "passive":
+        case "passive2":
             key = "Passive Skill";
             break;
         default:

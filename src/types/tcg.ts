@@ -65,6 +65,7 @@ export interface TCGTalents {
     burst: TCGSkill;
     burst2: TCGSkill;
     passive?: TCGSkill;
+    passive2?: TCGSkill;
 }
 
 export interface TCGKeyword extends TCGSkill {

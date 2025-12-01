@@ -27,8 +27,10 @@ export function Burning({ element, application = false }: ReactionProps) {
     return `Icon_${elements[0]} +Icon_${elements[1]} <span class="text-primary">Burning</span>: ${description}`;
 }
 
-export function Crystallize({ element }: ReactionProps) {
-    return `Icon_Geo +Icon_${element} <span class="text-primary">${element} Crystallize</span>: DMG +1 for this instance, your active character gains 1 Shield point (Can stack, max 2 points)`;
+export function Crystallize({ element, application = false }: ReactionProps) {
+    return !application
+        ? `Icon_Geo +Icon_${element} <span class="text-primary">${element} Crystallize</span>: DMG +1 for this instance, your active character gains 1 Shield point (Can stack, max 2 points)`
+        : `Icon_Geo +Icon_${element} <span class="text-primary">${element} Crystallize</span>: The opponent's active character gains 1 Shield point (Can stack, max 2 points).`;
 }
 
 export function Frozen({ element, application = false }: ReactionProps) {
