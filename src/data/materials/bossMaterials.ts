@@ -415,9 +415,19 @@ export const bossMaterials = [
         tag: "Cyclic Military Kuuvahki Core",
         name: "Cyclic Military Kuuvahki Core",
         displayName: "Cyclic Military Kuuvahki Core",
-        source: "Super-Heavy Landrover: Mechanized Fortresses",
+        source: "Super-Heavy Landrover: Mechanized Fortress",
         rarity: 4,
         release: { version: "Luna III" },
+    },
+    {
+        id: "bossMat_42",
+        category: "bossMat",
+        tag: "Remnant of the Dreadwing",
+        name: "Remnant of the Dreadwing",
+        displayName: "Remnant of the Dreadwing",
+        source: "Whisperer of Nightmares",
+        rarity: 4,
+        release: { version: "Luna IV" },
     },
 ] as const;
 

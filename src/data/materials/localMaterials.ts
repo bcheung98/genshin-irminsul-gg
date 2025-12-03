@@ -541,6 +541,26 @@ export const localMaterials = [
         rarity: 1,
         release: { version: "Luna I" },
     },
+    {
+        id: "localMat_6_3",
+        category: "localMat",
+        tag: "Winter Icelea",
+        name: "Winter Icelea",
+        displayName: "Winter Icelea",
+        source: "Nod-Krai",
+        rarity: 1,
+        release: { version: "Luna IV" },
+    },
+    {
+        id: "localMat_6_4",
+        category: "localMat",
+        tag: "Pine Amber",
+        name: "Pine Amber",
+        displayName: "Pine Amber",
+        source: "Nod-Krai",
+        rarity: 1,
+        release: { version: "Luna IV" },
+    },
 ] as const;
 
 export const localMatNames = localMaterials.map((mat) => mat.tag);

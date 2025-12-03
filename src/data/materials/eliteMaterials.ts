@@ -979,6 +979,41 @@ export const eliteMaterials = [
         rarity: 4,
         release: { version: "Luna I" },
     },
+    {
+        id: "eliteMat_28",
+        category: "eliteMat",
+        tag: "Shadow",
+        name: "Wild Hunt Mist",
+        displayName: "Wild Hunt Mist",
+        release: { version: "Luna IV" },
+    },
+        {
+        id: "eliteMat_28_0",
+        category: "eliteMat",
+        tag: "Shadow1",
+        name: "Solidified Mist",
+        displayName: "Mistshroud Manifestation",
+        rarity: 2,
+        release: { version: "Luna IV" },
+    },
+    {
+        id: "eliteMat_28_1",
+        category: "eliteMat",
+        tag: "Shadow2",
+        name: "Mist Plate",
+        displayName: "Mistshroud Plate",
+        rarity: 3,
+        release: { version: "Luna IV" },
+    },
+    {
+        id: "eliteMat_28_2",
+        category: "eliteMat",
+        tag: "Shadow3",
+        name: "Mist Helmet",
+        displayName: "Mistshroud Helmet",
+        rarity: 4,
+        release: { version: "Luna IV" },
+    },
 ] as const;
 
 export const eliteMatNames = eliteMaterials.map((mat) => mat.tag);

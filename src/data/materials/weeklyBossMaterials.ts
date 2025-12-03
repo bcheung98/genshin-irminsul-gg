@@ -361,6 +361,36 @@ export const weeklyBossMaterials = [
         rarity: 5,
         release: { version: "5.6" },
     },
+    {
+        id: "weeklyBossMat_12_0",
+        category: "weeklyBossMat",
+        tag: "Doctor1",
+        name: "???",
+        displayName: "???",
+        source: "The Doctor",
+        rarity: 5,
+        release: { version: "Luna IV" },
+    },
+    {
+        id: "weeklyBossMat_12_1",
+        category: "weeklyBossMat",
+        tag: "Doctor2",
+        name: "???",
+        displayName: "???",
+        source: "The Doctor",
+        rarity: 5,
+        release: { version: "Luna IV" },
+    },
+    {
+        id: "weeklyBossMat_12_2",
+        category: "weeklyBossMat",
+        tag: "Doctor3",
+        name: "???",
+        displayName: "???",
+        source: "The Doctor",
+        rarity: 5,
+        release: { version: "Luna IV" },
+    },
 ] as const;
 
 export const weeklyBossMatNames = weeklyBossMaterials.map((mat) => mat.tag);
