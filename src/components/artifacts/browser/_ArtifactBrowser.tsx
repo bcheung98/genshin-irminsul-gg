@@ -41,7 +41,9 @@ function ArtifactBrowser() {
     const artifacts = [...useAppSelector(selectArtifacts)].sort(
         (a, b) =>
             parseVersionNumber(b.release.version).localeCompare(
-                parseVersionNumber(a.release.version)
+                parseVersionNumber(a.release.version),
+                undefined,
+                { numeric: true }
             ) ||
             b.rarity - a.rarity ||
             b.displayName.localeCompare(a.displayName)
